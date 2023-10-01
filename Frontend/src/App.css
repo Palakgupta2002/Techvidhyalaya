@@ -1,0 +1,128 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: darkgray;
+  background: -moz-linear-gradient(
+    left,
+    rgb(85, 80, 80) 0%,
+    darkgray 100%
+  );
+
+  background: -webkit-linear-gradient(
+    left,
+    rgb(223, 219, 211) 0%,
+    rgb(179, 177, 172) 100%
+  );
+  margin: 0;
+  pdading: 0;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'quicksand';
+}
+.popupimages {
+  width: 300px;
+  height: 300px;
+  animation: example 5s infinite;
+  background-repeat: no-repeat;
+  background-image: url('./confused.png');
+}
+@keyframes example {
+  0% {
+    background-image: url('./confused.png');
+  }
+  25% {
+    background-image: url('./excited1.png');
+  }
+  50% {
+    background-image: url('./excited1\ \(2\).png');
+  }
+  100% {
+    background-image: url('./confused.png');
+  }
+}
+.nav {
+  display: flex;
+ justify-content: space-between;
+  height: 40px;
+ 
+  column-gap: 70px;
+
+}
+.ant-modal-content {
+  background: linear-gradient(to left, #d1a53f, #d3a61d, #dbb313, #d6be1d, #eedf05) !important;
+  border: 2px solid blue !important;
+  
+  
+}
+#nav {
+  display: flex;
+  border: 2px solid rgb(51, 96, 62);
+  box-shadow: rgba(14, 13, 13, 0.757) 0px 5px 15px;
+  background-color: rgb(228, 240, 238);
+  height: 40px;
+}
+iframe{
+  border:"2px solid red"
+}
+
+.signupbox>.ant-modal>.ant-modal-content{
+  border: 2px solid red;
+  
+}
+.signupcontent{
+  display: flex;
+  align-items: center;
+  border: 2px solid blue;
+}
+.imagesection{
+  width: 350px;
+  height: 100px;
+  border: 2px solid red;
+}
+.ant-modal-footer{
+  display: none !important;
+}
+
