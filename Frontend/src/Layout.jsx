@@ -77,7 +77,7 @@ const Layout = () => {
               <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showLogin}>
                 Login
               </Button>
-              <Modal centered width={"1000px"} title="Basic Modal" open={isLogin} onOk={handleokLogin} onCancel={handleLogin}>
+              <Modal centered width={"500px"}  open={isLogin} onOk={handleokLogin} onCancel={handleLogin}>
                 <Login />
               </Modal>
             </li>

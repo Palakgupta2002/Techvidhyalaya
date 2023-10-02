@@ -3,6 +3,7 @@ import context from "./context";
 
 const Posts = () => {
   const [image, setImage] = useState(null);
+  const [title, setTitle] = useState(""); // Add a state for the title
   const { globalEmail, setpostcreate } = useContext(context);
 
   const handleImageChange = (e) => {
@@ -15,6 +16,10 @@ const Posts = () => {
     }
   };
 
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
   const handlePostSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,6 +30,7 @@ const Posts = () => {
 
     const formData = new FormData();
     formData.append("image", image);
+    formData.append("title", title); // Add title to the FormData
     formData.append("email", globalEmail);
     try {
       const response = await fetch("http://localhost:5000/CreatePost", {
@@ -52,6 +58,12 @@ const Posts = () => {
     <div>
       <form onSubmit={handlePostSubmit}>
         <input type="file" name="image" onChange={handleImageChange} />
+        <input
+          type="text"
+          placeholder="Enter a title for your post"
+          value={title}
+          onChange={handleTitleChange}
+        />
         <button type="submit">Create Post</button>
       </form>
     </div>

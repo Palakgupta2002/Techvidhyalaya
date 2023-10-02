@@ -25,7 +25,7 @@ function Profile() {
       {userProfile && (
         <div>
           <h2>User Profile</h2>
-          <p>Username: {userProfile.username}<EditOutlined/></p>
+          <p>Username: {userProfile.username}<EditOutlined /></p>
           <p>College: {userProfile.college}<EditOutlined/></p>
           <p>Email: {userProfile.email}<EditOutlined/></p>
           <p>Phone: {userProfile.phone}<EditOutlined/></p>

@@ -43,6 +43,7 @@ function MyNotes() {
                         image.data &&
                         image.contentType.startsWith("image/") && (
                           <>
+                          <p>{image.title}</p>
                             <img style={{ border: "2px solid red" }} width={"300px"}
                                src={URL.createObjectURL(
                                 new Blob([new Uint8Array(image.data.data)], {
@@ -75,7 +76,8 @@ function MyNotes() {
                         pdf.data &&
                         pdf.contentType === "application/pdf" && (
                           <>
-                            {console.log(pdf.data.data, "ek ladaka pagal h")}
+                            
+                            <p>{pdf.title}</p>
                             <iframe style={{ border: "2px solid red" }}
                               title={`${profile.username}'s PDF`}
                               src={URL.createObjectURL(
@@ -111,7 +113,7 @@ function MyNotes() {
                         pdf.data &&
                         pdf.contentType === "video/mp4" && (
                           <>
-                            {console.log(pdf.data.data, "ek ladaka pagal h")}
+                            <p>{pdf.title}</p>
                             <video style={{ border: "2px solid red" }}
                               title={`${profile.username}'s Video`}
                               controls

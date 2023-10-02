@@ -107,6 +107,7 @@ const Home = () => {
                           image.data &&
                           image.contentType.startsWith("image/") && (
                             <>
+                            <p>{image.title}</p>
                               <img style={{ border: "2px solid red" }} width={"300px"}
                                 src={URL.createObjectURL(
                                   new Blob([new Uint8Array(image.data.data)], {
@@ -143,12 +144,12 @@ const Home = () => {
                     Array.isArray(profile.image) &&
                     profile.image.map((pdf, pdfIndex) => (
                       <li key={pdfIndex}>
-
                         {pdf !== null &&
                           pdf.data &&
                           pdf.contentType === "application/pdf" && (
                             <>
-                              {console.log(pdf.data.data, "ek ladaka pagal h")}
+                              {console.log(pdf.tittle)}
+                              <p>{pdf.title}</p>
                               <iframe style={{ border: "2px solid red" }}
                                 title={`${profile.username}'s PDF`}
                                 src={URL.createObjectURL(
@@ -197,7 +198,8 @@ const Home = () => {
                           pdf.data &&
                           pdf.contentType === "video/mp4" && (
                             <>
-                              {console.log(pdf.data.data, "ek ladaka pagal h")}
+                              {console.log(pdf.data.data)}
+                              <p>{pdf.data.title}</p>
                               <video style={{ border: "2px solid red" }}
                                 title={`${profile.username}'s Video`}
                                 controls
