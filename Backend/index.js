@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
   phone: String,
   image: [
     {
+      title: String, // Add a title property for the image
       data: Buffer,
       contentType: String,
     },
@@ -131,9 +132,11 @@ server.post("/CreatePost", upload.single("image"), async (req, res) => {
 
     if (req.file) {
       const imageObject = {
+        title: req.body.title, // Include the title in the image object
         data: req.file.buffer,
         contentType: req.file.mimetype,
       };
+
       // Push the new image object to the image array
       user.image.push(imageObject);
 
@@ -149,12 +152,8 @@ server.post("/CreatePost", upload.single("image"), async (req, res) => {
     return res.status(500).json({ error: "An error occurred" });
   }
 });
-//Delete a Post
-// server.get("/DeletePost",async(req,res)=>{
-//   try{
-//     const user=await User.deleteOne()
-//   }
-// }) 
+
+
 
 
 server.use((req, res) => {
