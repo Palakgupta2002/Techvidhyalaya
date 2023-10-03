@@ -22,9 +22,11 @@ const userSchema = new mongoose.Schema({
   phone: String,
   image: [
     {
-      title: String, // Add a title property for the image
+      description: String, // Add a description property for the image
       data: Buffer,
       contentType: String,
+      selectedOption:String
+
     },
   ],
 });
@@ -132,9 +134,10 @@ server.post("/CreatePost", upload.single("image"), async (req, res) => {
 
     if (req.file) {
       const imageObject = {
-        title: req.body.title, // Include the title in the image object
+        description: req.body.description,
         data: req.file.buffer,
         contentType: req.file.mimetype,
+        selectedOption: req.body.selectedOption, // Retrieve selectedOption from the request body
       };
 
       // Push the new image object to the image array
@@ -151,6 +154,39 @@ server.post("/CreatePost", upload.single("image"), async (req, res) => {
     console.error("Error creating post:", error);
     return res.status(500).json({ error: "An error occurred" });
   }
+});
+
+//This is for update Profile 
+server.post("/updateProfile", (req, res) => {
+  const {
+    username,
+        password,
+        college, 
+        email,
+        phone,
+  } = req.body;
+  db.collection("users").findOneAndUpdate(
+    { emaill:email },
+    {
+      $set: {
+        username,
+        password,
+        college, 
+        email,
+        phone,
+      },
+    },
+    { new: true },
+    (err, updatedUser) => {
+      if (err) {
+        console.error("Error updating profile:", err);
+        res.json({ success: false });
+      } else {
+        console.log("Profile updated successfully");
+        res.json({ success: true });
+      }
+    }
+  );
 });
 
 
