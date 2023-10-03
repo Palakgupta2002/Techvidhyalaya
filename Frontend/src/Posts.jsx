@@ -1,15 +1,23 @@
 import React, { useContext, useState } from "react";
 import context from "./context";
+import { PlusOutlined } from "@ant-design/icons";
+import Select from "react-select";
 
 const Posts = () => {
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState(""); // Add a state for the title
+  const [title, setTitle] = useState("");
   const { globalEmail, setpostcreate } = useContext(context);
+  const [selectedOption, setSelectedOption] = useState(null); 
+
+  const options = [
+    { value: "College Notes", label: "College Notes" },
+    { value: "Programming", label: "Programming" },
+    { value: "Placement", label: "Placement" },
+  ];
 
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile && selectedFile.size > 2 * 1024 * 1024) {
-      // Check if the selected file size is greater than 2MB (2 * 1024 * 1024 bytes)
       alert("File size should be less than 2MB.");
     } else {
       setImage(selectedFile);
@@ -18,6 +26,10 @@ const Posts = () => {
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
+  };
+
+  const handleOptionChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
   };
 
   const handlePostSubmit = async (e) => {
@@ -30,8 +42,13 @@ const Posts = () => {
 
     const formData = new FormData();
     formData.append("image", image);
-    formData.append("title", title); // Add title to the FormData
+    formData.append("description", title);
     formData.append("email", globalEmail);
+    formData.append("selectedOption",selectedOption.value ); // Use the same key as in the backend
+
+  
+    
+
     try {
       const response = await fetch("http://localhost:5000/CreatePost", {
         method: "POST",
@@ -58,11 +75,16 @@ const Posts = () => {
     <div>
       <form onSubmit={handlePostSubmit}>
         <input type="file" name="image" onChange={handleImageChange} />
-        <input
-          type="text"
+        <textarea
+          className="textarea"
           placeholder="Enter a title for your post"
           value={title}
           onChange={handleTitleChange}
+        />
+        <Select
+          value={selectedOption}
+          onChange={handleOptionChange}
+          options={options}
         />
         <button type="submit">Create Post</button>
       </form>

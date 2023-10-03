@@ -125,4 +125,27 @@ iframe{
 .ant-modal-footer{
   display: none !important;
 }
+.buttondesign{
+  background-color:#f3bc3e;
+  border:none;
+  color:white;
+  padding:8px;
+ 
+}
+.textarea{
+  width: 80%;
+	height: 50px;
+	margin: 20px auto;
+	padding: 10px;
+	border: none;
+	outline: none;
+	border-radius: 0px;
+	background-color: none;
+	border-bottom: 0.5px solid white;
+	background: none;
+  background: transparent;
+	color: #eee;
+
+  
+}
 

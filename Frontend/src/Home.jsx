@@ -3,12 +3,14 @@ import { Link, Outlet } from "react-router-dom";
 import logo from "./Ever.png"
 import Profile from "./Profile"
 import { Button, Modal } from 'antd';
-import { PlusOutlined } from '@ant-design/icons'
 import { RedoOutlined } from '@ant-design/icons'
 import context from "./context";
 import Download from "./Download";
 import { useNavigate } from "react-router-dom";
 import Share from "./Share";
+import Blog from "./Blog";
+import Posts from "./Posts";
+import  FilterComponent  from "./FilterComponent";
 
 
 
@@ -16,6 +18,7 @@ const Home = () => {
 
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState([]);
+  const [postcrete,setpostcreate]=useState(false);
   const [url, seturl] = useState(" ")
   const { postcreate } = useContext(context)
   console.log("post create", postcreate)
@@ -41,6 +44,8 @@ const Home = () => {
   useEffect(() => {
     getdata()
   }, [postcreate]);
+
+  
 
 
 
@@ -74,31 +79,85 @@ const Home = () => {
   const handleCancelS = () => {
     setIsModalOpenS(false);
   };
+  const [isModalOpenN, setIsModalOpenN] = useState(false);
+  const showModalN = () => {
+    setIsModalOpenN(true);
+  };
+  const handleOkN = () => {
+    setIsModalOpenN(false);
+  };
+  const handleCancelN = () => {
+    setIsModalOpenN(false);
+  };
+  const handleposthere=()=>{
+    setpostcreate(true)
+  }
 
   return (
     <div >
       <nav id="nav" style={{ justifyContent: "space-between" }} >
         <div><img width={"150px"} src={logo} /></div>
-        <div><button onClick={onNotes}>
+        <div><button className="buttondesign" onClick={onNotes}>
           MyNotes
 
         </button></div>
-        <Button style={{}} type="primary" onClick={showModal}>
-          profile
+        <div>
+        <Button style={{backgroundColor:"#f3bc3e"}} type="primary" onClick={showModal}>
+          Profile
         </Button>
-        <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal style={{}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
           <Profile />
         </Modal>
+        </div>
+        
+        <div>
+          <Button style={{ backgroundColor: "transparent" }} type="primary" onClick={showModalS}>
+            <Button style={{backgroundColor:"#f3bc3e",color:"white"}}>
+              LogOut
+              <RedoOutlined />
+            </Button>
+          </Button>
+          <Modal open={isModalOpenS} onOk={handleOkS} onCancel={handleCancelS}>
+            Want to go logout
+            
+              <Link to="/">
+                Logout
+              </Link>
+           
+          </Modal>
+
+        </div>
+        <div className="buttondesign">
+          <Blog/>
+        </div>
+        
+        
       </nav>
+      <div >
+           
+            
+            <div>
+        <Button style={{backgroundColor:"#f3bc3e"}} type="primary" onClick={showModalN} >
+        New Post
+        </Button>
+        <Modal style={{}} open={isModalOpenN} onOk={handleOkN} onCancel={handleCancelN}>
+        <Posts />
+        </Modal>
+        </div>
+     
+        </div>
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+      <div>
+          <FilterComponent/>
+        </div>
         <div>
 
           <ul>
             <h3>user profiles</h3>
             {profiles.map((profile, index) => (
-              <li key={index}>
+              <li key={index}  >
                 <p>{profile.username}</p>
-                <ul>
+                <ul style={{listStyle:"none"}}>
                   {profile.image &&
                     Array.isArray(profile.image) &&
                     profile.image.map((image, imageIndex) => (
@@ -249,34 +308,6 @@ const Home = () => {
             ))}
           </ul>
         </div>
-        <div >
-
-          <Link to="Posts">
-            <button>
-              new Post
-              <PlusOutlined />
-
-            </button>
-          </Link>
-        </div>
-        <div>
-          <Button style={{ backgroundColor: "transparent" }} type="primary" onClick={showModalS}>
-            <Button >
-              LogOut
-              <RedoOutlined />
-            </Button>
-          </Button>
-          <Modal open={isModalOpenS} onOk={handleOkS} onCancel={handleCancelS}>
-            Want to go logout
-            <button>
-              <Link to="/">
-                Logout
-              </Link>
-            </button>
-          </Modal>
-
-        </div>
-
       </div>
 
 
