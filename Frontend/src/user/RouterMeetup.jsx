@@ -9,13 +9,14 @@ import Posts from "./Posts";
 import Signup from "./Signup";
 import context from "./context";
 import MyNotes from "./MyNotes";
+import { Adlogin } from "../admin/Adlogin";
 const RouterMeetup = () => {
   const [globalEmail, setGlobalEmail] = useState(null);
-  const [postcreate,setpostcreate]=useState(false);
+  const [postcreate, setpostcreate] = useState(false);
   return (
     <context.Provider
-      value={{ setGlobalEmail: setGlobalEmail, globalEmail: globalEmail, postcreate:postcreate,setpostcreate:setpostcreate}}
-      
+      value={{ setGlobalEmail: setGlobalEmail, globalEmail: globalEmail, postcreate: postcreate, setpostcreate: setpostcreate }}
+
     >
       <BrowserRouter>
         <Routes>
@@ -23,11 +24,12 @@ const RouterMeetup = () => {
           <Route path="/Home" element={<Home />}>
             <Route path="Profile" element={<Profile />} />
             <Route path="Posts" element={<Posts />} />
-    
+
           </Route>
           <Route path="/Login" element={<Login />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/MyNotes" element={<MyNotes />} />
+          <Route path="/Adlogin" element={<Adlogin/>} />
         </Routes>
       </BrowserRouter>
     </context.Provider>

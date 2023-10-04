@@ -1,9 +1,15 @@
 import React from 'react'
 import Notes from './Notes.png'
 import Footerimage from './Footerimage.png'
+import Link from 'antd/es/typography/Link'
+import { useNavigate } from "react-router-dom";
 
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const Admin = () => {
+    navigate("/Adlogin");
+  }
   return (
     <div>
       <footer style={{ marginTop: "180px", border: "1px solid orange", height: "300px", backgroundColor: "#f3bc3e" }}>
@@ -13,32 +19,32 @@ const Footer = () => {
           <div style={{ width: "100px", height: "100px" }}></div>
         </div>
         <div style={{ display: "flex", columnGap: "20px", justifyContent: "space-between" }}>
-          <div style={{  height: "100px",marginTop:"80px" }}><ul style={{listStyle:"none",}}>
-           <li>About</li>
-           <li>Gole ka mandir</li>
-           <li>Suppot@gmail.com</li>
-           <li>909045673</li>
-           </ul></div>
-          <div style={{ width: "100px", height: "100px",marginLeft:"30px" }}>
-            <ul style={{listStyle:"none"}}>
+          <div style={{ height: "100px", marginTop: "80px" }}><ul style={{ listStyle: "none", }}>
+            <li>About</li>
+            <li>Gole ka mandir</li>
+            <li>Suppot@gmail.com</li>
+            <li>909045673</li>
+          </ul></div>
+          <div style={{ width: "100px", height: "100px", marginLeft: "30px" }}>
+            <ul style={{ listStyle: "none" }}>
               <li>hihi</li>
               <li>hi</li>
               <li>hi</li>
               <li>hi</li>
             </ul>
           </div>
-          <div style={{ width: "100px", height: "100px",marginTop:"-100px"}}>
-          <ul style={{listStyle:"none"}}>
+          <div style={{ width: "100px", height: "100px", marginTop: "-100px" }}>
+            <ul style={{ listStyle: "none" }}>
               <li>hihi</li>
               <li>hi</li>
               <li>hi</li>
               <li>hi</li>
             </ul>
           </div>
-          <div style={{ width: "100px", height: "100px",marginTop:"-100px"}}>
-          <ul style={{listStyle:"none"}}>
-              <li>hihi</li>
-              <li>hi</li>
+          <div style={{ width: "100px", height: "100px", marginTop: "-100px" }}>
+            <ul style={{ listStyle: "none" }}>
+              <li>About</li>
+              <li><button onClick={Admin}>Admin Login</button></li>
               <li>hi</li>
               <li>hi</li>
             </ul>

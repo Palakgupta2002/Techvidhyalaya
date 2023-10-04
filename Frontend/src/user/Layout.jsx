@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import 'reactjs-popup/dist/index.css';
 import Slider from "react-slick";
-import background from "./download.jpg";
 import Login from "./login"
 import Signup from "./Signup"
 import { Button, Modal } from 'antd';
@@ -15,13 +14,9 @@ import Banner2 from "./Banner3.png"
 import Banner3 from "./Banner4.png"
 import Banner4 from "./Banner5.png"
 import Banner5 from "./Banner3.png"
-import Signupimg from "./Signupimg.png"
-
-
-
-
-
+import { useNavigate } from 'react-router-dom';
 const Layout = () => {
+  const navigate = useNavigate();
   var settings = {
     dots: true,
     infinite: true,
@@ -63,21 +58,21 @@ const Layout = () => {
                 SignUp
               </Button>
               <div className="signupbox">
-              <Modal centered width={800} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} >
-                <div className="signupcontent">
-                  <div className="imagesection"></div>
-                  <div className="signupsection">
-                  < Signup setIsModalOpen={setIsModalOpen}/>
+                <Modal centered width={800} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} >
+                  <div className="signupcontent">
+                    <div className="imagesection"></div>
+                    <div className="signupsection">
+                      < Signup setIsModalOpen={setIsModalOpen} />
+                    </div>
                   </div>
-                </div>
-              </Modal>
+                </Modal>
               </div>
             </li>
             <li >
               <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showLogin}>
                 Login
               </Button>
-              <Modal centered width={"500px"}  open={isLogin} onOk={handleokLogin} onCancel={handleLogin}>
+              <Modal centered width={"500px"} open={isLogin} onOk={handleokLogin} onCancel={handleLogin}>
                 <Login />
               </Modal>
             </li>
