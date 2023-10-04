@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Share from "./Share";
 import Blog from "./Blog";
 import Posts from "./Posts";
-import  FilterComponent  from "./FilterComponent";
+import FilterComponent from "./FilterComponent";
 
 
 
@@ -18,10 +18,12 @@ const Home = () => {
 
   const navigate = useNavigate();
   const [profiles, setProfiles] = useState([]);
-  const [postcrete,setpostcreate]=useState(false);
+  const [filteredProfiles, setFilteredProfiles] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const [url, seturl] = useState(" ")
   const { postcreate } = useContext(context)
-  console.log("post create", postcreate)
+
+
 
   const getdata = async () => {
     await fetch("http://localhost:5000/Profiles")
@@ -45,10 +47,32 @@ const Home = () => {
     getdata()
   }, [postcreate]);
 
+
+
+
+  const handleSearch = () => {
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    const filteredData = profiles.filter((profile) => {
+      // Search in profile data (username, email, college)
+      const foundInProfileData =
+        (profile?.username?.toLowerCase().includes(lowerCaseQuery) || false) ||
+        (profile?.email?.toLowerCase().includes(lowerCaseQuery) || false) ||
+        (profile?.college?.toLowerCase().includes(lowerCaseQuery) || false);
   
-
-
-
+      // Search in image descriptions
+      const foundInImageDescriptions = profile.image.some((image) =>
+     
+        (image?.description?.toLowerCase().includes(lowerCaseQuery) || false)
+      );
+  
+      return foundInProfileData || foundInImageDescriptions;
+    });
+  
+    setFilteredProfiles(filteredData);
+  };
+  console.log(filteredProfiles)
+ 
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -89,9 +113,7 @@ const Home = () => {
   const handleCancelN = () => {
     setIsModalOpenN(false);
   };
-  const handleposthere=()=>{
-    setpostcreate(true)
-  }
+  
 
   return (
     <div >
@@ -102,54 +124,61 @@ const Home = () => {
 
         </button></div>
         <div>
-        <Button style={{backgroundColor:"#f3bc3e"}} type="primary" onClick={showModal}>
-          Profile
-        </Button>
-        <Modal style={{}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-          <Profile />
-        </Modal>
+          <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModal}>
+            Profile
+          </Button>
+          <Modal style={{}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Profile />
+          </Modal>
         </div>
-        
+
         <div>
           <Button style={{ backgroundColor: "transparent" }} type="primary" onClick={showModalS}>
-            <Button style={{backgroundColor:"#f3bc3e",color:"white"}}>
+            <Button style={{ backgroundColor: "#f3bc3e", color: "white" }}>
               LogOut
               <RedoOutlined />
             </Button>
           </Button>
           <Modal open={isModalOpenS} onOk={handleOkS} onCancel={handleCancelS}>
             Want to go logout
-            
-              <Link to="/">
-                Logout
-              </Link>
-           
+
+            <Link to="/">
+              Logout
+            </Link>
+
           </Modal>
 
         </div>
         <div className="buttondesign">
-          <Blog/>
+          <Blog />
         </div>
-        
-        
+
+
       </nav>
       <div >
-           
-            
-            <div>
-        <Button style={{backgroundColor:"#f3bc3e"}} type="primary" onClick={showModalN} >
-        New Post
-        </Button>
-        <Modal style={{}} open={isModalOpenN} onOk={handleOkN} onCancel={handleCancelN}>
-        <Posts />
-        </Modal>
+
+
+        <div>
+          <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModalN} >
+            New Post
+          </Button>
+          <Modal style={{}} open={isModalOpenN} onOk={handleOkN} onCancel={handleCancelN}>
+            <Posts />
+          </Modal>
         </div>
-     
-        </div>
+        <div>
+        <input
+          type="text"
+          placeholder="Search profiles..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
+
+      </div>
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-      <div>
-          <FilterComponent/>
-        </div>
+      
         <div>
 
           <ul>
@@ -157,7 +186,7 @@ const Home = () => {
             {profiles.map((profile, index) => (
               <li key={index}  >
                 <p>{profile.username}</p>
-                <ul style={{listStyle:"none"}}>
+                <ul style={{ listStyle: "none" }}>
                   {profile.image &&
                     Array.isArray(profile.image) &&
                     profile.image.map((image, imageIndex) => (
@@ -166,7 +195,7 @@ const Home = () => {
                           image.data &&
                           image.contentType.startsWith("image/") && (
                             <>
-                            <p>{image.title}</p>
+                              <p>{image.title}</p>
                               <img style={{ border: "2px solid red" }} width={"300px"}
                                 src={URL.createObjectURL(
                                   new Blob([new Uint8Array(image.data.data)], {
@@ -207,7 +236,7 @@ const Home = () => {
                           pdf.data &&
                           pdf.contentType === "application/pdf" && (
                             <>
-                              {console.log(pdf.tittle)}
+                              
                               <p>{pdf.title}</p>
                               <iframe style={{ border: "2px solid red" }}
                                 title={`${profile.username}'s PDF`}
@@ -257,7 +286,7 @@ const Home = () => {
                           pdf.data &&
                           pdf.contentType === "video/mp4" && (
                             <>
-                              {console.log(pdf.data.data)}
+                              
                               <p>{pdf.data.title}</p>
                               <video style={{ border: "2px solid red" }}
                                 title={`${profile.username}'s Video`}
