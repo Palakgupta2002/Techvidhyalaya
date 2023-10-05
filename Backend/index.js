@@ -33,6 +33,15 @@ const userSchema = new mongoose.Schema({
 
 // Create model using schema
 const User = mongoose.model("user", userSchema);
+const BlogSchema=new mongoose.Schema({
+  Blogemail:String,
+  Blogimage:{
+    Bdata:Buffer,
+    BcontentType:String
+  },
+  BlogDes:String,
+})
+const Blog=mongoose.model("Blog",BlogSchema)
 
 //This is for to connect a two localhost to each other like gateway
 server.use(cors());
@@ -41,6 +50,7 @@ server.get("/", (res, req) => {
   req.send("hello");
 });
 const upload = multer();
+
 //This is for Signup
 server.post("/Signup", async (req, res) => {
   try {
@@ -69,9 +79,93 @@ server.post("/Signup", async (req, res) => {
     return res.status(500).json({ error: "An error occurred" });
   }
 });
+//Schema for quiz Creation
+const QuizSchema = mongoose.Schema({
+  Question: String,
+  Option1: String,
+  Option2: String,
+  Option3: String,
+  Option4: String,
+  Qemail: String,
+  QAnswer:String
+});
+//Create a quiz
+const Quiz=mongoose.model("Quiz",QuizSchema)
+server.post("/CreateQuiz", async (req, res) => {
+  console.log(req.body)
+  try {
+    const NewQuiz = new Quiz();
+    NewQuiz.Question = req.body.Question; // Use "Question" instead of "Questions"
+    NewQuiz.Option1 = req.body.Option1;
+    NewQuiz.Option2 = req.body.Option2;
+    NewQuiz.Option3 = req.body.Option3;
+    NewQuiz.Option4 = req.body.Option4;
+    NewQuiz.Qemail = req.body.Qemail;
+    NewQuiz.QAnswer=req.body.Answer// Use "Qemail" instead of "QEmail"
+
+    await NewQuiz.save();
+    res.status(200).json({ message: "Quiz created successfully" });
+  } catch (error) {
+    console.error("Error creating quiz:", error);
+    res.status(500).json({ message: "Error creating quiz" });
+  }
+});
 
 
-//This is for Login
+
+
+// Define the endpoint for creating a blog
+server.post("/BlogCreation", upload.single("Blogimage"), async (req, res) => {
+  try {
+    const blogCreate = new Blog();
+    blogCreate.Blogemail = req.body.BlogEmail; // Match the field name from the frontend
+    blogCreate.BlogDes = req.body.BlogDescription; // Match the field name from the frontend
+
+    if (req.file) {
+      blogCreate.Blogimage = {
+        Bdata: req.file.buffer,
+        BcontentType: req.file.mimetype,
+      };
+    }
+
+    await blogCreate.save();
+    res.status(200).json({ message: "Blog created successfully", blog: blogCreate });
+  } catch (error) {
+    console.error("Error creating blog:", error);
+    res.status(500).json({ message: "Error creating blog" });
+  }
+});
+//This is for Admin Login
+
+const adminSchema = new mongoose.Schema({ 
+id:String,
+name:String,
+phone:String,
+email:String,
+password:String
+});
+const Admin = mongoose.model("Admin", adminSchema);
+server.post('/AdminLogin', async (req, res) => {
+  try {
+    const { AdminEmail, AdminPassword } = req.body;
+    const admin = await Admin.findOne({ email: AdminEmail });
+    if (admin) {
+      return res.status(404).json({ message: 'Admin not found' });
+    }
+    if (AdminPassword === Admin.password) {
+      return res.status(200).json({ message: 'Admin logged in successfully' });
+    } else {
+      return res.status(401).json({ message: 'Incorrect password' });
+    }
+  } catch (error) {
+    console.error('Admin login error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+// ...
+
+
+
 // This is for Login
 server.post("/Login", async (req, res) => {
   try {
@@ -102,6 +196,7 @@ server.get("/Profiles", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
+//This 
 
 server.get("/Profile", async (req, res) => {
   console.log(emaill);
@@ -165,7 +260,7 @@ server.post("/updateProfile", (req, res) => {
         email,
         phone,
   } = req.body;
-  db.collection("users").findOneAndUpdate(
+  User.collection("users").findOneAndUpdate(
     { emaill:email },
     {
       $set: {
