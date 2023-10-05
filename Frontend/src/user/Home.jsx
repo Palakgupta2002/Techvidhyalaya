@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import Share from "./Share";
 import Blog from "./Blog";
 import Posts from "./Posts";
+import { ShowImages } from "./ShowImages";
+import CreateQuiz from "../admin/CreateQuiz";
 
 const Home = () => {
 
@@ -19,10 +21,10 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [url, seturl] = useState(" ")
   const { postcreate } = useContext(context)
+  const { globalemail } = useContext(context)
+  const [showCreateQuiz, setShowCreateQuiz] = useState(false);
   const profilesToMap = searchQuery ? filteredProfiles : profiles;
-
-
-
+  const [ReportLink,SetReportLink]=useState("")
   const getdata = async () => {
     await fetch("http://localhost:5000/Profiles")
       .then((response) => response.json())
@@ -36,9 +38,8 @@ const Home = () => {
   const onNotes = () => {
     navigate("/MyNotes");
   }
-  const handleShareClick = (newUrl) => {
-    seturl(newUrl);
-  };
+  
+
 
 
   useEffect(() => {
@@ -50,6 +51,7 @@ const Home = () => {
 
   const handleSearch = () => {
     const lowerCaseQuery = searchQuery.toLowerCase();
+
     const filteredData = profiles.filter((profile) => {
       // Search in profile data (username, email, college)
       const foundInProfileData =
@@ -59,7 +61,6 @@ const Home = () => {
 
       // Search in image descriptions
       const foundInImageDescriptions = profile.image.some((image) =>
-
         (image?.description?.toLowerCase().includes(lowerCaseQuery) || false)
       );
 
@@ -68,6 +69,7 @@ const Home = () => {
 
     setFilteredProfiles(filteredData);
   };
+
   console.log(filteredProfiles)
 
 
@@ -81,16 +83,7 @@ const Home = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  const [isModalOpenp, setIsModalOpenp] = useState(false);
-  const showModalp = () => {
-    setIsModalOpenp(true);
-  };
-  const handleOkp = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancelp = () => {
-    setIsModalOpenp(false);
-  };
+
   const [isModalOpenS, setIsModalOpenS] = useState(false);
   const showModalS = () => {
     setIsModalOpenS(true);
@@ -122,7 +115,6 @@ const Home = () => {
         <div><img width={"150px"} src={logo} /></div>
         <div><button className="buttondesign" onClick={onNotes}>
           MyNotes
-
         </button></div>
         <div>
           <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModal}>
@@ -151,14 +143,21 @@ const Home = () => {
 
         </div>
         <div className="buttondesign">
-          <Blog />
+          <Link to="/Blog">Blog</Link>
         </div>
 
 
       </nav>
-      <div >
+      <div  style={{display:"flex",justifyContent:"space-between"}}>
+      <div>
+      <button onClick={() => 
+      setShowCreateQuiz(true)
+      }>Create Your Quiz</button>
 
+      {showCreateQuiz && <CreateQuiz globalemail={globalemail} setShowCreateQuiz={setShowCreateQuiz} />}
+    </div>
 
+         <div style={{border:"2px solid blue"}}> 
         <div>
           <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModalN} >
             New Post
@@ -179,115 +178,17 @@ const Home = () => {
             setFilteredProfiles(profiles)
           }}>Reset</button>
         </div>
-
-      </div>
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-
         <div>
 
-          <ul>
-            <h3>user profiles</h3>
-            {profilesToMap.map((profile, index) => (
-              <li key={index}>
-                <p>{profile.username}</p>
-                <ul style={{ listStyle: "none" }}>
-                  {(profile.image || []).filter((image) =>
-                    image?.description?.toLowerCase().includes(searchQuery.toLowerCase())
-                  ).map((image, imageIndex) => (
-                    <li key={imageIndex}>
-                      {image !== null && image.data && image.contentType.startsWith("image/") && (
-                        <>
-                          <p>{image.title}</p>
-                          <img
-                            style={{ border: "2px solid red" }}
-                            width={"300px"}
-                            src={URL.createObjectURL(
-                              new Blob([new Uint8Array(image.data.data)], {
-                                type: image.contentType,
-                              })
-                            )}
-                            alt={`${profile.username}'s Image`}
-                          />
-                          <Download />
-                          <button
-                            onClick={() =>
-                              handleShareClick(
-                                URL.createObjectURL(
-                                  new Blob([new Uint8Array(image.data.data)], {
-                                    type: image.contentType,
-                                  })
-                                )
-                              )
-                            }
-                          >
-                            <Button style={{}} type="primary" onClick={showModalp}>
-                              Share
-                            </Button>
-                            <Modal open={isModalOpenp} onOk={handleOkp} onCancel={handleCancelp}>
-                              <Share url={url} />
-                            </Modal>
-                          </button>
-                        </>
-                      )}
-                    </li>
-                  ))}
-                  {(profile.email.toLowerCase() === searchQuery.toLowerCase() ||
-                    profile.username.toLowerCase() === searchQuery.toLowerCase()) && (
-                      <>
-                        {profile.image.map((image, imageIndex) => (
-                          <li key={imageIndex}>
-                            {image !== null && image.data && image.contentType.startsWith("image/") && (
-                              <>
-                                <p>{image.title}</p>
-                                <img
-                                  style={{ border: "2px solid red" }}
-                                  width={"300px"}
-                                  src={URL.createObjectURL(
-                                    new Blob([new Uint8Array(image.data.data)], {
-                                      type: image.contentType,
-                                    })
-                                  )}
-                                  alt={`${profile.username}'s Image`}
-                                />
-                                <Download />
-                                <button
-                                  onClick={() =>
-                                    handleShareClick(
-                                      URL.createObjectURL(
-                                        new Blob([new Uint8Array(image.data.data)], {
-                                          type: image.contentType,
-                                        })
-                                      )
-                                    )
-                                  }
-                                >
-                                  <Button style={{}} type="primary" onClick={showModalp}>
-                                    Share
-                                  </Button>
-                                  <Modal open={isModalOpenp} onOk={handleOkp} onCancel={handleCancelp}>
-                                    <Share url={url} />
-                                  </Modal>
-                                </button>
-                              </>
-                            )}
-                          </li>
-                        ))}
-                      </>
-                    )}
-                </ul>
-              </li>
-            ))}
+<ShowImages profilesToMap={profilesToMap}  globalemail={globalemail} SetReportLink={SetReportLink}/>
+</div>
 
-
-
-          </ul>
-        </div>
       </div>
-
-
-
+     
+      </div>
       <Outlet />
     </div>
+    
   );
 };
 

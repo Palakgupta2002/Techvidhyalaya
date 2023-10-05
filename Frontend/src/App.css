@@ -101,7 +101,7 @@ body {
   display: flex;
   border: 2px solid rgb(51, 96, 62);
   box-shadow: rgba(14, 13, 13, 0.757) 0px 5px 15px;
-  background-color: rgb(228, 240, 238);
+  background-color: #f3bc3e;
   height: 40px;
 }
 iframe{
@@ -230,4 +230,10 @@ iframe{
     max-width: 100%;
   }
 }
+.Document{
+  border: 2px solid blue;
+  height: 20px;
+  scroll-behavior: auto;
+}
+
 

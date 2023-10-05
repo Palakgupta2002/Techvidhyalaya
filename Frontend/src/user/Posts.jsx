@@ -17,7 +17,7 @@ const Posts = () => {
 
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.size > 2 * 1024 * 1024) {
+    if (selectedFile && selectedFile.size > 2 * 1024 * 2024) {
       alert("File size should be less than 2MB.");
     } else {
       setImage(selectedFile);

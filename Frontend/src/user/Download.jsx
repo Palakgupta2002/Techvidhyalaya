@@ -1,36 +1,66 @@
-import React from 'react'
-
-import { useState  } from 'react';
+import React, { useState } from 'react';
+import { MoreOutlined } from '@ant-design/icons';
+import Report from './Report';
+import { Modal, Button } from 'antd';
 
 function Download() {
-    
-    const onButtonClick = () => {
-        // using Java Script method to get PDF file
-        fetch('SamplePDF.pdf').then(response => {
-            response.blob().then(blob => {
-                // Creating new object of PDF file
-                const fileURL = window.URL.createObjectURL(blob);
-                // Setting various property values
-                let alink = document.createElement('a');
-                alink.href = fileURL;
-                alink.download = 'SamplePDF.pdf';
-                alink.click();
-            })
-        })
-    }
-    
+  const [isModalVisible, setIsModalVisible] = useState(false);
+ 
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const onButtonClick = () => {
+    // Using JavaScript method to get PDF file
+    fetch('SamplePDF.pdf')
+      .then((response) => {
+        response.blob().then((blob) => {
+          // Creating a new object of the PDF file
+          const fileURL = window.URL.createObjectURL(blob);
+          // Setting various property values
+          let alink = document.createElement('a');
+          alink.href = fileURL;
+          alink.download = 'SamplePDF.pdf';
+          alink.click();
+        });
+      })
+      .catch((error) => {
+        console.error('Error downloading PDF:', error);
+      });
+  };
 
   return (
-    <div style={{display:"flex",justifyContent:"space-between"}}>
-        <div>
-        <button onClick={onButtonClick}>
-                    Download PDF
-                </button>
-        </div>
-        </div>
-      
-  )
+    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+     
+      <div>
+        <button onClick={onButtonClick}>Download PDF</button>
+      </div>
+      <div>
+        <Button type="primary" onClick={showModal}>
+          More <MoreOutlined />
+        </Button>
+        <Modal
+          title="Report about The Post"
+          visible={isModalVisible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <button onClick={()=>{}}>
+            <Report/>
+          </button>
+        </Modal>
+      </div>
+    </div>
+  );
 }
 
-
-export default Download
+export default Download;
