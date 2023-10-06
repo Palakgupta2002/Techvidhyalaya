@@ -12,6 +12,9 @@ import Blog from "./Blog";
 import Posts from "./Posts";
 import { ShowImages } from "./ShowImages";
 import CreateQuiz from "../admin/CreateQuiz";
+import { ShowQuiz } from "./ShowQuiz";
+import {SearchOutlined} from "@ant-design/icons"
+import {ReloadOutlined}  from "@ant-design/icons"
 
 const Home = () => {
 
@@ -24,7 +27,7 @@ const Home = () => {
   const { globalemail } = useContext(context)
   const [showCreateQuiz, setShowCreateQuiz] = useState(false);
   const profilesToMap = searchQuery ? filteredProfiles : profiles;
-  const [ReportLink,SetReportLink]=useState("")
+  const [ReportLink, SetReportLink] = useState("")
   const getdata = async () => {
     await fetch("http://localhost:5000/Profiles")
       .then((response) => response.json())
@@ -38,7 +41,7 @@ const Home = () => {
   const onNotes = () => {
     navigate("/MyNotes");
   }
-  
+
 
 
 
@@ -112,83 +115,89 @@ const Home = () => {
   return (
     <div >
       <nav id="nav" style={{ justifyContent: "space-between" }} >
-        <div><img width={"150px"} src={logo} /></div>
-        <div><button className="buttondesign" onClick={onNotes}>
-          MyNotes
-        </button></div>
-        <div>
-          <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModal}>
-            Profile
-          </Button>
-          <Modal style={{}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-            <Profile />
-          </Modal>
+        <div style={{ border: "2px solid blue" }}>
+          Tech PathShala
         </div>
-
-        <div>
-          <Button style={{ backgroundColor: "transparent" }} type="primary" onClick={showModalS}>
-            <Button style={{ backgroundColor: "#f3bc3e", color: "white" }}>
-              LogOut
-              <RedoOutlined />
+        <div style={{ display: "flex", marginRight: "30px" }}>
+          <div><button className="buttondesign" onClick={onNotes}>
+            MyNotes
+          </button></div>
+          <div>
+            <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModal}>
+              Profile
             </Button>
-          </Button>
-          <Modal open={isModalOpenS} onOk={handleOkS} onCancel={handleCancelS}>
-            Want to go logout
+            <Modal style={{}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+              <Profile />
+            </Modal>
+          </div>
 
-            <Link to="/">
-              Logout
-            </Link>
+          <div>
+            <Button style={{ backgroundColor: "transparent" }} type="primary" onClick={showModalS}>
+              <Button style={{ backgroundColor: "#f3bc3e", color: "white" }}>
+                LogOut
+                <RedoOutlined />
+              </Button>
+            </Button>
+            <Modal open={isModalOpenS} onOk={handleOkS} onCancel={handleCancelS}>
+              Want to go logout
+              <Link to="/">
+                Logout
+              </Link>
+            </Modal>
 
-          </Modal>
-
+          </div>
+          <div className="buttondesign">
+            <Link to="/Blog">Blog</Link>
+          </div>
         </div>
-        <div className="buttondesign">
-          <Link to="/Blog">Blog</Link>
-        </div>
-
 
       </nav>
-      <div  style={{display:"flex",justifyContent:"space-between"}}>
-      <div>
-      <button onClick={() => 
-      setShowCreateQuiz(true)
-      }>Create Your Quiz</button>
-
-      {showCreateQuiz && <CreateQuiz globalemail={globalemail} setShowCreateQuiz={setShowCreateQuiz} />}
-    </div>
-
-         <div style={{border:"2px solid blue"}}> 
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
-          <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModalN} >
-            New Post
-          </Button>
-          <Modal style={{}} open={isModalOpenN} onOk={handleOkN} onCancel={handleCancelN}>
-            <Posts />
-          </Modal>
+          <button style={{marginTop:"30px"}} className="buttondesign" onClick={() =>
+            setShowCreateQuiz(true)
+          }>Create Your Quiz</button>
+
+          {showCreateQuiz && <CreateQuiz globalemail={globalemail} setShowCreateQuiz={setShowCreateQuiz} />}
+          <ShowQuiz/>
         </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Search profiles..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button onClick={handleSearch}>Search</button>
-          <button onClick={() => {
-            setFilteredProfiles(profiles)
-          }}>Reset</button>
+        <div style={{ border: "2px solid blue" }}>
+          
+          <div style={{display:"flex", justifyContent:"space-between",border:"2px solid red"}}>
+            <div>
+            <input className="SearchDesign"
+              type="text"
+              placeholder="Search profiles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button id="SearchButton" onClick={handleSearch}><SearchOutlined id="SerachIcon" /></button>
+            <button id="ResetButton" onClick={() => {
+              setFilteredProfiles(profiles)
+            }}><ReloadOutlined /></button>
+            <div>
+            </div>
+            <div>
+            <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModalN} >
+              New Post
+            </Button>
+            <Modal style={{}} open={isModalOpenN} onOk={handleOkN} onCancel={handleCancelN}>
+              <Posts />
+            </Modal>
+            </div>
+          </div>
+            
+          </div>
+          <div>
+            <ShowImages profilesToMap={profilesToMap} globalemail={globalemail} SetReportLink={SetReportLink} />
+          </div>
+
         </div>
-        <div>
 
-<ShowImages profilesToMap={profilesToMap}  globalemail={globalemail} SetReportLink={SetReportLink}/>
-</div>
-
-      </div>
-     
       </div>
       <Outlet />
     </div>
-    
+
   );
 };
 

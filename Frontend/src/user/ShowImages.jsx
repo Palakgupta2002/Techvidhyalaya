@@ -39,10 +39,10 @@ const handleclick=()=>{
   return (
     <div>
       <div>
-        <ul>
+        <ul style={{border:"2px solid red",width:"800px"}}>
           <h3>user profiles</h3>
           {profilesToMap.map((profile, index) => (
-            <li key={index}>
+            <li  style={{border:"2px solid blue", width:"200px"}} key={index}>
               <p>{profile.username}</p>
               <ul style={{ listStyle: 'none' }}>
                 {(profile.image || []).map((image, imageIndex) => (
