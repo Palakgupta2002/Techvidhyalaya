@@ -6,7 +6,7 @@ export const BlogCreate = () => {
   const [Blogimage, setimage] = useState(Blog); // Initialize with default image
   const [BlogDescription, setdesc] = useState('');
   const [Blogemail, setemail] = useState('');
-  const [selectedOption, setSelectedOption] = useState("Choose a title"); 
+  const [selectedOption, setSelectedOption] = useState("Choose a title   "); 
 
   const options = [
     { value: "Programming", label: "Programming" },
@@ -69,8 +69,11 @@ export const BlogCreate = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
+   
 
     try {
+      const currentDate = new Date().toISOString();
+      formData.append('BlogDate', currentDate);
       const response = await fetch('http://localhost:5000/BlogCreation', {
         method: 'POST',
         body: formData,

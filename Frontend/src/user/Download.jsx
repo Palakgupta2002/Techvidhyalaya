@@ -3,7 +3,7 @@ import { MoreOutlined } from '@ant-design/icons';
 import Report from './Report';
 import { Modal, Button } from 'antd';
 
-function Download() {
+function Download(offendemail) {
   const [isModalVisible, setIsModalVisible] = useState(false);
  
 
@@ -18,6 +18,7 @@ function Download() {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  
 
   const onButtonClick = () => {
     // Using JavaScript method to get PDF file
@@ -55,7 +56,7 @@ function Download() {
           onCancel={handleCancel}
         >
           <button onClick={()=>{}}>
-            <Report/>
+            <Report offendemail={offendemail}/>
           </button>
         </Modal>
       </div>

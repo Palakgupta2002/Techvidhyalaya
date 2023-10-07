@@ -28,6 +28,7 @@ const Home = () => {
   const [showCreateQuiz, setShowCreateQuiz] = useState(false);
   const profilesToMap = searchQuery ? filteredProfiles : profiles;
   const [ReportLink, SetReportLink] = useState("")
+  const [offendlink,setoffendlink]=useState("")
   const getdata = async () => {
     await fetch("http://localhost:5000/Profiles")
       .then((response) => response.json())
@@ -48,6 +49,7 @@ const Home = () => {
   useEffect(() => {
     getdata()
   }, [postcreate]);
+  
 
 
 
@@ -57,17 +59,13 @@ const Home = () => {
 
     const filteredData = profiles.filter((profile) => {
       // Search in profile data (username, email, college)
-      const foundInProfileData =
-        (profile?.username?.toLowerCase().includes(lowerCaseQuery) || false) ||
-        (profile?.email?.toLowerCase().includes(lowerCaseQuery) || false) ||
-        (profile?.college?.toLowerCase().includes(lowerCaseQuery) || false);
-
+      
       // Search in image descriptions
       const foundInImageDescriptions = profile.image.some((image) =>
         (image?.description?.toLowerCase().includes(lowerCaseQuery) || false)
       );
 
-      return foundInProfileData || foundInImageDescriptions;
+      return  foundInImageDescriptions;
     });
 
     setFilteredProfiles(filteredData);
@@ -189,7 +187,7 @@ const Home = () => {
             
           </div>
           <div>
-            <ShowImages profilesToMap={profilesToMap} globalemail={globalemail} SetReportLink={SetReportLink} />
+            <ShowImages  profilesToMap={profilesToMap} globalemail={globalemail} searchQuery={searchQuery}  />
           </div>
         </div>
 
