@@ -37,10 +37,12 @@ const BlogSchema=new mongoose.Schema({
   Blogemail:String,
   Blogimage:{
     Bdata:Buffer,
-    BcontentType:String
+    BcontentType:String,
+    contentType: String,
   },
   BlogDes:String,
-  Blogtitle:String
+  Blogtitle:String,
+  Blogdate:String
 })
 const Blog=mongoose.model("Blog",BlogSchema)
 
@@ -120,7 +122,9 @@ server.post("/BlogCreation", upload.single("Blogimage"), async (req, res) => {
   try {
     const blogCreate = new Blog();
     blogCreate.Blogemail = req.body.BlogEmail; // Match the field name from the frontend
-    blogCreate.BlogDes = req.body.BlogDescription; // Match the field name from the frontend
+    blogCreate.BlogDes = req.body.BlogDescription;
+    blogCreate.Blogdate=req.body.BlogDate;
+    blogCreate.Blogtitle=req.body.Blogtitle // Match the field name from the frontend
 
     if (req.file) {
       blogCreate.Blogimage = {
@@ -146,6 +150,7 @@ email:String,
 password:String
 });
 const Admin = mongoose.model("Admin", adminSchema);
+
 server.post('/AdminLogin', async (req, res) => {
   try {
     const { AdminEmail, AdminPassword } = req.body;
