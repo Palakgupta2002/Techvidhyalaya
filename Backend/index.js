@@ -196,7 +196,20 @@ server.get("/Profiles", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
-//This 
+//This is For to Show Quizes
+
+
+// Create an endpoint to fetch quiz data
+server.get("/ShowQuiz", async (req, res) => {
+  try {
+    const quizData = await Quiz.find();
+    res.status(200).json(quizData);
+  } catch (error) {
+    console.error("Error fetching the data", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
 
 server.get("/Profile", async (req, res) => {
   console.log(emaill);
