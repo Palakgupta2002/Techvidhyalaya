@@ -1,10 +1,41 @@
 import React, { useState } from 'react';
 import Blog from './Blog.jpeg';
+import { Select } from 'antd';
 
 export const BlogCreate = () => {
   const [Blogimage, setimage] = useState(Blog); // Initialize with default image
   const [BlogDescription, setdesc] = useState('');
   const [Blogemail, setemail] = useState('');
+  const [selectedOption, setSelectedOption] = useState("Choose a title"); 
+
+  const options = [
+    { value: "Programming", label: "Programming" },
+    { value: "Placement", label: "Placement" },
+    { value: "Web Development", label: "Web Development" },
+    { value: "Mobile App Development", label: "Mobile App Development" },
+    { value: "Data Science", label: "Data Science" },
+    { value: "Artificial Intelligence", label: "Artificial Intelligence" },
+    { value: "Machine Learning", label: "Machine Learning" },
+    { value: "Cybersecurity", label: "Cybersecurity" },
+    { value: "Cloud Computing", label: "Cloud Computing" },
+    { value: "Software Engineering", label: "Software Engineering" },
+    { value: "DevOps", label: "DevOps" },
+    { value: "IoT (Internet of Things)", label: "IoT (Internet of Things)" },
+    { value: "Blockchain", label: "Blockchain" },
+    { value: "Game Development", label: "Game Development" },
+    { value: "Database Management", label: "Database Management" },
+    { value: "Frontend Development", label: "Frontend Development" },
+    { value: "Backend Development", label: "Backend Development" },
+    { value: "UI/UX Design", label: "UI/UX Design" },
+    { value: "Robotics", label: "Robotics" },
+    { value: "Networking", label: "Networking" },
+    { value: "Operating Systems", label: "Operating Systems" },
+    { value: "Algorithms and Data Structures", label: "Algorithms and Data Structures" },
+  ];
+  
+  const handleOptionChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+  };
 
   const handlechangeimg = (e) => {
     const selectedFile = e.target.files[0];
@@ -33,6 +64,8 @@ export const BlogCreate = () => {
   formData.append('Blogimage', Blogimage);
   formData.append('BlogDescription', BlogDescription);
   formData.append('BlogEmail', Blogemail);
+  formData.append('Blogtitle',selectedOption);
+
 
   const handlesubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
@@ -73,6 +106,13 @@ export const BlogCreate = () => {
           name="Blogemail"
           onChange={handlechangetit}
           placeholder="Title Of Your Post"
+        />
+        <br></br>
+         <Select
+          value={selectedOption}
+          onChange={handleOptionChange}
+          options={options}
+          
         />
         <button type="submit">Create Post</button>
       </form>

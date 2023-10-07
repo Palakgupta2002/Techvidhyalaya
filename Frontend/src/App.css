@@ -99,10 +99,10 @@ body {
 }
 #nav {
   display: flex;
-  border: 2px solid rgb(51, 96, 62);
-  box-shadow: rgba(14, 13, 13, 0.757) 0px 5px 15px;
-  background-color: #f3bc3e;
-  height: 60px;
+  /* border: 2px solid rgb(51, 96, 62); */
+  /* box-shadow: rgba(14, 13, 13, 0.757) 0px 5px 15px; */
+  /* background-color: #f3bc3e;
+  height: 60px; */
   
 }
 iframe{
