@@ -23,7 +23,9 @@ const Blog = () => {
 
   return (
     <div>
-      <nav id='nav'></nav>
+      <nav id='nav'>
+        <div>TechPathshala</div>
+      </nav>
       <div>
         <div style={{ display: "flex" }}>
           {/* Content */}

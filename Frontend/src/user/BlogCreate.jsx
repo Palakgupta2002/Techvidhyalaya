@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
+import Blog from './Blog.jpeg';
 
 export const BlogCreate = () => {
-  const [Blogimage, setimage] = useState(null);
+  const [Blogimage, setimage] = useState(Blog); // Initialize with default image
   const [BlogDescription, setdesc] = useState('');
   const [Blogemail, setemail] = useState('');
 
   const handlechangeimg = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.size > 2 * 1024 * 1024) {
-      alert('File size should be less than 2MB.');
+    if (selectedFile) {
+      if (selectedFile.size > 2 * 1024 * 1024) {
+        alert('File size should be less than 2MB.');
+      } else {
+        setimage(selectedFile);
+      }
     } else {
-      setimage(selectedFile);
+      // User didn't select a new image, use the default image
+      setimage(Blog);
     }
   };
+  
 
   const handlechangedesc = (e) => {
     setdesc(e.target.value);

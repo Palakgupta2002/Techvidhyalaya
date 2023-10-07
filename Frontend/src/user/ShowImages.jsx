@@ -3,7 +3,6 @@ import Share from './Share';
 import Download from './Download';
 import { Button, Modal } from 'antd';
 import { Document, Page, pdfjs } from 'react-pdf'; // Import react-pdf for PDF rendering
-import { Carousel } from 'antd';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -39,22 +38,20 @@ const handleclick=()=>{
   return (
     <div>
       <div>
-        <ul style={{border:"2px solid red",width:"800px"}}>
+        <ul style={{width:"800px",listStyle:"none"}}>
           <h3>user profiles</h3>
           {profilesToMap.map((profile, index) => (
-            <li  style={{border:"2px solid blue", width:"200px"}} key={index}>
+            <li  style={{ width:"450px",marginLeft:"100px"}} key={index}>
               <p>{profile.username}</p>
               <ul style={{ listStyle: 'none' }}>
                 {(profile.image || []).map((image, imageIndex) => (
-                  <li key={imageIndex}>
+                  <li style={{border:"2px solid red",marginTop:"20px"}} key={imageIndex}>
                     {(image !== null && image.data && image.contentType ) && (
                       <>
-                        <p>{image.description}</p>
-                        <p>heloo</p>
+                        <p style={{borderBottom:"2px solid red",padding:"10px",textAlign:"start"}}>{image.description}</p>
                         {image.contentType.startsWith('image/') && (
                           <img
-                            style={{ border: '2px solid red' }}
-                            width={'300px'}
+                            width={'400px'}
                             src={URL.createObjectURL(
                               new Blob([new Uint8Array(image.data.data)], {
                                 type: image.contentType,
@@ -104,8 +101,9 @@ const handleclick=()=>{
                             Your browser does not support the video tag.
                           </video>
                         )}
+                        <div style={{borderTop:"2px solid red",padding:"10px"}}>
                         <Download globalemail={globalemail}/>
-                        <button
+                        <button className='buttondesign' style={{position:"absolute", marginTop:"-30px"}}
                           onClick={() =>
                             showModal(
                               URL.createObjectURL(
@@ -117,8 +115,9 @@ const handleclick=()=>{
                             )
                           }
                         >
-                          <Button type="primary">Share</Button>
+                         Share
                         </button>
+                        </div>
                       </>
                     )}
                   </li>
@@ -127,7 +126,7 @@ const handleclick=()=>{
             </li>
           ))}
         </ul>
-        <Modal visible={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal  visible={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
           {contentType.startsWith('image/') && <Share url={url} />}
         </Modal>
       </div>

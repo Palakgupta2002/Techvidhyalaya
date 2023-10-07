@@ -115,7 +115,7 @@ const Home = () => {
   return (
     <div >
       <nav id="nav" style={{ justifyContent: "space-between" }} >
-        <div style={{ border: "2px solid blue" }}>
+        <div style={{  }}>
           Tech PathShala
         </div>
         <div style={{ display: "flex", marginRight: "30px" }}>
@@ -161,10 +161,10 @@ const Home = () => {
           {showCreateQuiz && <CreateQuiz globalemail={globalemail} setShowCreateQuiz={setShowCreateQuiz} />}
           <ShowQuiz/>
         </div>
-        <div style={{ border: "2px solid blue" }}>
+        <div>
           
-          <div style={{display:"flex", justifyContent:"space-between",border:"2px solid red"}}>
-            <div>
+          <div>
+            <div style={{marginTop:"40px"}}> 
             <input className="SearchDesign"
               type="text"
               placeholder="Search profiles..."
@@ -177,7 +177,7 @@ const Home = () => {
             }}><ReloadOutlined /></button>
             <div>
             </div>
-            <div>
+            <div style={{width:"100px",marginLeft:"100px",}}> 
             <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModalN} >
               New Post
             </Button>
@@ -191,7 +191,6 @@ const Home = () => {
           <div>
             <ShowImages profilesToMap={profilesToMap} globalemail={globalemail} SetReportLink={SetReportLink} />
           </div>
-
         </div>
 
       </div>

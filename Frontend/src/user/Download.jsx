@@ -29,7 +29,7 @@ function Download() {
           // Setting various property values
           let alink = document.createElement('a');
           alink.href = fileURL;
-          alink.download = 'SamplePDF.pdf';
+          alink.download = 'TechVidhyalay.pdf';
           alink.click();
         });
       })
@@ -42,10 +42,10 @@ function Download() {
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
      
       <div>
-        <button onClick={onButtonClick}>Download PDF</button>
+        <button className='buttondesign' onClick={onButtonClick}>Download</button>
       </div>
       <div>
-        <Button type="primary" onClick={showModal}>
+        <Button className='buttondesign' type="primary" onClick={showModal}>
           More <MoreOutlined />
         </Button>
         <Modal
