@@ -40,6 +40,7 @@ const BlogSchema=new mongoose.Schema({
     BcontentType:String
   },
   BlogDes:String,
+  Blogtitle:String
 })
 const Blog=mongoose.model("Blog",BlogSchema)
 
@@ -197,6 +198,15 @@ server.get("/Profiles", async (req, res) => {
   }
 });
 //This is For to Show Quizes
+server.get("/ShowBlogs", async (req, res) => {
+  try {
+    const quizData = await Blog.find();
+    res.status(200).json(quizData);
+  } catch (error) {
+    console.error("Error fetching the data", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
 
 
 // Create an endpoint to fetch quiz data
