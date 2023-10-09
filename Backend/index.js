@@ -97,7 +97,7 @@ const Quiz=mongoose.model("Quiz",QuizSchema)
 server.post("/CreateQuiz", async (req, res) => {
   console.log(req.body)
   try {
-    const NewQuiz = new Quiz();
+    const NewRoprt = new Quiz();
     NewQuiz.Question = req.body.Question; // Use "Question" instead of "Questions"
     NewQuiz.Option1 = req.body.Option1;
     NewQuiz.Option2 = req.body.Option2;
@@ -150,6 +150,31 @@ email:String,
 password:String
 });
 const Admin = mongoose.model("Admin", adminSchema);
+//This is schema for Report page 
+const ReportSchema = new mongoose.Schema({
+  ReportMakerEmail: String, // Change to ReportMakerEmail
+  OffenderEmail: String, // Change to OffenderEmail
+  ReportLink: String, // Change to ReportLink
+  ReportDesc: String, // Change to ReportDesc
+});
+
+const Report = mongoose.model("Report", ReportSchema);
+
+server.post('/ReportCreation', async (req, res) => {
+  try {
+    const NewReport = new Report();
+    NewReport.ReportMakerEmail = req.body.ReportMakerEmail;
+    NewReport.OffenderEmail = req.body.OffenderEmail;
+    NewReport.ReportLink = req.body.ReportLink;
+    NewReport.ReportDesc = req.body.ReportDesc;
+
+    await NewReport.save();
+    res.status(200).json({ message: "Report created successfully" });
+  } catch (error) {
+    console.error("Error creating Report:", error);
+    res.status(500).json({ message: "Error creating Report" });
+  }
+});
 
 server.post('/AdminLogin', async (req, res) => {
   try {
