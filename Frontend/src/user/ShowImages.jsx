@@ -15,6 +15,8 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [offendemail,setoffendemail]=useState("")
+  const [ReportImageLink,SetReportImageLink]=useState("");
+  console.log(ReportImageLink,"REport ")
 
   // Function to show the modal with content
   const showModal = (imageUrl, contentType) => {
@@ -33,7 +35,7 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  console.log(globalemail,"in showimages")
+ 
 
   // Function to handle PDF page click
   const handlePageClick = () => {
@@ -133,8 +135,13 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
                           <div style={{ borderTop: "2px solid red", padding: "10px" }}>
                             <button onClick={()=>{
                               setoffendemail(profile.email)
+                              SetReportImageLink(URL.createObjectURL(
+                                new Blob([new Uint8Array(image.data.data)], {
+                                  type: image.contentType,
+                                })
+                              ))
                             }}>
-                            <Download offendemail={offendemail} />
+                            <Download offendemail={offendemail} ReportImageLink={ReportImageLink} />
                             </button>
                             <button className='buttondesign' style={{ position: "absolute", marginTop: "-30px" }}
                               onClick={() =>

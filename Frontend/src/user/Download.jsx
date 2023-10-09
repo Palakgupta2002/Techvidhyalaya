@@ -3,7 +3,7 @@ import { MoreOutlined } from '@ant-design/icons';
 import Report from './Report';
 import { Modal, Button } from 'antd';
 
-function Download(offendemail) {
+function Download(offendemail,ReportImageLink) {
   const [isModalVisible, setIsModalVisible] = useState(false);
  
 
@@ -56,7 +56,7 @@ function Download(offendemail) {
           onCancel={handleCancel}
         >
           <button onClick={()=>{}}>
-            <Report offendemail={offendemail}/>
+            <Report offendemail={offendemail} ReportImageLink={ReportImageLink}/>
           </button>
         </Modal>
       </div>
