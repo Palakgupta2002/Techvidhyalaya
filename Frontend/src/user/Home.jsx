@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
-import logo from "./Ever.png"
+import logo from "../user/images/Ever.png"
 import Profile from "./Profile"
 import { Button, Modal } from 'antd';
 import { RedoOutlined } from '@ant-design/icons'
@@ -114,14 +114,14 @@ const Home = () => {
     <div >
       <nav id="nav" style={{ justifyContent: "space-between" }} >
         <div style={{  }}>
-          Tech PathShala
+          <img width={"100px"} style={{marginTop:"-1rem"}} src={logo}></img>
         </div>
-        <div style={{ display: "flex", marginRight: "30px" }}>
-          <div><button className="buttondesign" onClick={onNotes}>
+        <div style={{ display: "flex", marginRight: "30px",columnGap:"10px",marginTop:"0.8%" }}>
+          <div><button className="NavButtonDes"  onClick={onNotes}>
             MyNotes
           </button></div>
           <div>
-            <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModal}>
+            <Button className="NavButtonDes" type="primary" onClick={showModal}>
               Profile
             </Button>
             <Modal style={{}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
@@ -130,11 +130,9 @@ const Home = () => {
           </div>
 
           <div>
-            <Button style={{ backgroundColor: "transparent" }} type="primary" onClick={showModalS}>
-              <Button style={{ backgroundColor: "#f3bc3e", color: "white" }}>
+            <Button className="NavButtonDes" type="primary" onClick={showModalS}>
                 LogOut
                 <RedoOutlined />
-              </Button>
             </Button>
             <Modal open={isModalOpenS} onOk={handleOkS} onCancel={handleCancelS}>
               Want to go logout
@@ -144,8 +142,10 @@ const Home = () => {
             </Modal>
 
           </div>
-          <div className="buttondesign">
-            <Link to="/Blog">Blog</Link>
+          <div >
+            <button className="NavButtonDes">
+            <Link style={{textDecoration:"none", color:"black"}}  to="/Blog">Blog</Link>
+            </button>
           </div>
         </div>
 

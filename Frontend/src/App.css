@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -43,17 +44,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: darkgray;
+  background: white;
   background: -moz-linear-gradient(
     left,
-    rgb(85, 80, 80) 0%,
-    darkgray 100%
+    white 0%,
+    whitesmoke 100%
   );
 
   background: -webkit-linear-gradient(
     left,
-    rgb(223, 219, 211) 0%,
-    rgb(179, 177, 172) 100%
+    white 0%,
+    white 100%
   );
   margin: 0;
   pdading: 0;
@@ -67,22 +68,9 @@ body {
   height: 300px;
   animation: example 5s infinite;
   background-repeat: no-repeat;
-  background-image: url('./user/confused.png');
+ 
 }
-@keyframes example {
-  0% {
-    background-image: url('./user/excited1.png');
-  }
-  25% {
-    background-image: url('./user/excited1\ \(2\).png');
-  }
-  50% {
-    background-image: url('./user/excited1\ \(2\).png');
-  }
-  100% {
-    background-image: url('./user/confused.png');
-  }
-}
+
 .nav {
   display: flex;
  justify-content: space-between;
@@ -92,17 +80,18 @@ body {
 
 }
 .ant-modal-content {
-  background: linear-gradient(to left, #d1a53f, #d3a61d, #dbb313, #d6be1d, #eedf05) !important;
-  border: 2px solid blue !important;
-  
+  /* background: linear-gradient(to left, #d1a53f, #d3a61d, #dbb313, #d6be1d, #eedf05) !important; */
+    background-color: none;
+    width: fit-content;
   
 }
 #nav {
   display: flex;
-  /* border: 2px solid rgb(51, 96, 62); */
-  /* box-shadow: rgba(14, 13, 13, 0.757) 0px 5px 15px; */
-  /* background-color: #f3bc3e;
-  height: 60px; */
+   border: none; 
+ 
+   background-color: #f3bc3e;
+   height: 60px; 
+  
   
 }
 iframe{
@@ -113,16 +102,7 @@ iframe{
   border: 2px solid red;
   
 }
-.signupcontent{
-  display: flex;
-  align-items: center;
-  border: 2px solid blue;
-}
-.imagesection{
-  width: 350px;
-  height: 100px;
-  border: 2px solid red;
-}
+
 .ant-modal-footer{
   display: none !important;
 }
@@ -154,8 +134,8 @@ iframe{
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: darkgray;
+  min-height: 70vh;
+
 }
 .login-box {
   display: flex;
@@ -214,10 +194,12 @@ iframe{
   max-width: 800px;
   min-height: 100%;
   background-color: #fffdf2;
+ 
 }
 .illustration-wrapper img {
   display: block;
   width: 100%;
+ 
 }
 @media screen and (max-width: 1023px) {
   .login-box {
@@ -229,7 +211,8 @@ iframe{
     min-height: auto;
   }
   #login-form {
-    max-width: 100%;
+    max-width: 300px;
+    border: 2px solid green;
   }
 }
 .Document{
@@ -248,10 +231,11 @@ iframe{
   padding: 10px;
 }
 .QuizCard{
-  border: 2px solid black;
+ 
   background-color: #febf05;
   margin: 40px;
   border-radius: 12px;
+  border-color: none;
 }
 .SearchDesign{
   width: 300px;
@@ -260,7 +244,7 @@ iframe{
   border-radius: 30px;
   font-size: 16px;
   outline: none;
-  border: none;
+  border: 1px solid grey;
 }
 #SerachIcon{
   color: #dbb313;
@@ -285,5 +269,49 @@ iframe{
   margin-left: 12px;
   color:#dbb313 ;
 }
+.form{
+  
+  width: 70%;
+  padding: 20px;
+  border: 2px solid grey;
+}
+.displayscn {
+  width: 93%;
+  height: 440px;
+  margin: 3rem;
+ 
+  display: flex;
+  background-colo: wheat;
+  z-index: -999; /* Change this value to the desired z-index */
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  
+}
+.Layoutcard{
+  width:30%;
+  height:80%;
+  margin-top:2rem;
+  border-radius: 10px;
+}
+.typeeffect{
+  font-size: 20px;
+  font-family:cursive;
+  background: linear-gradient(90deg, gray, rgb(4, 4, 4));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.NavButtonDes{
+  background-color:rgb(235, 226, 226) !important;
+  color: black;
+  text-decoration: none !important;
+ width: 6rem;
+  border:2px solid transparent;
+ border-radius: 5px;
+ height: 35px !important;
+  border: 2px solid black;
+  outline: none;
+}
+
 
 

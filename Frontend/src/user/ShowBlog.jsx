@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Blog from "./Blog.jpeg"
 
 const ShowBlog = () => {
   const [blogsData, setBlogsData] = useState([]);
@@ -24,17 +23,6 @@ const ShowBlog = () => {
 
     fetchData();
   }, []);
-
-  // Function to convert binary data to a data URL
-  const arrayBufferToDataURL = (arrayBuffer, BcontentType) => {
-    try {
-      const blob = new Blob([arrayBuffer], { type: BcontentType });
-      return URL.createObjectURL(blob);
-    } catch (error) {
-      console.error("Error creating Blob:", error);
-      return null;
-    }
-  };
 
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
@@ -65,7 +53,7 @@ const ShowBlog = () => {
                 alt={`Blog ${index}`}
               />
             ) : (
-              <img width={"200px"} height={"150px"} src={Blog} alt={`Blog ${index}`} />
+              <img width={"200px"} height={"150px"} src={require('./images/Blogs.jpeg')} alt={`Blog ${index}`} />
             )}
             <details
               style={{

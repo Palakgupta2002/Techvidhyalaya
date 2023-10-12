@@ -12,7 +12,7 @@ import MyNotes from "./MyNotes";
 import { Adlogin } from "../admin/Adlogin";
 import AdminHome from "../admin/AdminHome";
 import Report from "./Report";
-import Blog from "./Blog";
+import Blog from "../user/Blog";
 import CreateQuiz from "../admin/CreateQuiz";
 
 const RouterMeetup = () => {
@@ -37,7 +37,7 @@ const RouterMeetup = () => {
           <Route path="/MyNotes" element={<MyNotes />} />
           <Route path="/Adlogin" element={<Adlogin />} />
           <Route path="/AdHome" element={<AdminHome />} />
-          <Route path="/Blog" element={<Blog />} />
+          <Route path="/Blog" element={<Blog/>} />
           <Route path="/Report" element={<Report/>}/>
          </Routes>
       </BrowserRouter>

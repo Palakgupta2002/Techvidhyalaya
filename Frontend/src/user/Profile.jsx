@@ -18,17 +18,30 @@ function Profile() {
       });
   }, []);
   //Update a Profile
+  // const formData={
+  //   username:
+  // }
+  const handleUpdateProfile=()=>{
+    try{
+
+
+    }catch(error){
+
+    }
+
+  }
+
 
   return (
-    <div>
+    <div style={{border:"2px solid red",width:'300px',height:"300px",padding:"40px "}}>
       {console.log(setUserProfile)}
       {userProfile && (
         <div>
           <h2>User Profile</h2>
-          <p>Username: {userProfile.username}<EditOutlined /></p>
-          <p>College: {userProfile.college}<EditOutlined/></p>
-          <p>Email: {userProfile.email}<EditOutlined/></p>
-          <p>Phone: {userProfile.phone}<EditOutlined/></p>
+          <p>Username: {userProfile.username}<EditOutlined onClick={handleUpdateProfile} /></p>
+          <p>College: {userProfile.college}<EditOutlined onClick={handleUpdateProfile}/></p>
+          <p>Email: {userProfile.email}<EditOutlined onClick={handleUpdateProfile}/></p>
+          <p>Phone: {userProfile.phone}<EditOutlined onClick={handleUpdateProfile}/></p>
         </div>
       )}
     </div>

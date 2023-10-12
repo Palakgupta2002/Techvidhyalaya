@@ -1,21 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Footer from './Footer';
 import 'reactjs-popup/dist/index.css';
-import Slider from "react-slick";
 import Login from "./login"
 import Signup from "./Signup"
 import { Button, Modal } from 'antd';
+import {ArrowRightOutlined}  from '@ant-design/icons'
+
+import logo from "./images/Ever.png"
 import { useState } from 'react';
-import logo from "./Ever.png"
-import Banner from "./Banner1.png"
-import Banner1 from "./Banner2.png"
-import Banner2 from "./Banner3.png"
-import Banner3 from "./Banner4.png"
-import Banner4 from "./Banner5.png"
-import Banner5 from "./Banner3.png"
+
 import { useNavigate } from 'react-router-dom';
+import Type from './Type';
+// import Carousel from 'react-spring-3d-carousel';
 const Layout = () => {
+  const [background,setbackground]=useState("#f3bc3e" )
+  const [onclicktrue,setonclicktrue]=useState(false)
   const navigate = useNavigate();
   var settings = {
     dots: true,
@@ -24,6 +22,43 @@ const Layout = () => {
     slidesToShow: 1,
     slidesToScroll: 1
   };
+  const stringsQ=[
+    "Unleash Your Inner Quizmaster!",
+"Quiz Time: Challenge Accepted!",
+"Elevate Your Knowledge, One Quiz at a Time.",
+"Knowledge is Power, Play to Empower!",
+"Quiz It Up: Where Learning Meets Fun.",
+"Test Your Wits with Our Exciting Quizzes.",
+"Dive into the World of Quizzes & Discover!",
+"Join the Quiz Revolution – Are You Ready?",
+"Quizzes: Where Curiosity Meets Entertainment.",
+"Sharpen Your Mind, Play a Quiz Today!",
+  ]
+  const stringsB=[
+    "Tech Notes: Where Knowledge Meets Innovation.",
+"Empower Your Tech Journey with Notes.",
+"Explore, Learn, and Share Tech Insights.",
+"Tech Enthusiasts Unite: Create and Contribute.",
+"Notes for the Tech-Savvy Mind.",
+"From Ideas to Innovation: Start with Notes.",
+"Elevate Your Tech Game, One Note at a Time.",
+"Connecting Tech Minds, One Note Sharing.",
+"Tech Notes: Fueling Creativity, Igniting Ideas.",
+"Build, Collaborate, and Innovate with Tech Notes."
+  ]
+  const stringsP=[
+    "Navigating the Tech World Together.",
+    "Explore Blogs, Ace Quizzes, and More!",
+    "Your Gateway to Success: Placement Tips & More.",
+    "Unlock the Secrets of College Life and Beyond.",
+    "Code, Learn, and Excel with Us.",
+    "Discover Career Opportunities, One Click Away.",
+    "Simplify Your Journey to Tech Excellence.",
+    "From Campus to Career: We've Got You Covered.",
+    "Your Source for Programming Wisdom.",
+    "Tech Enthusiasts' Hub: Join the Conversation.",
+  ]
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -57,14 +92,9 @@ const Layout = () => {
               <Button style={{ backgroundColor: "#f3bc3e" }} type="primary" onClick={showModal}>
                 SignUp
               </Button>
-              <div className="signupbox">
+              <div >
                 <Modal centered width={800} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} >
-                  <div className="signupcontent">
-                    <div className="imagesection"></div>
-                    <div className="signupsection">
-                      < Signup setIsModalOpen={setIsModalOpen} />
-                    </div>
-                  </div>
+                    < Signup setIsModalOpen={setIsModalOpen} />
                 </Modal>
               </div>
             </li>
@@ -78,34 +108,41 @@ const Layout = () => {
             </li>
           </ul>
         </nav>
-        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: "60px" }}>
-          <div className='popupimages'></div>
-          <div style={{ width: "70%", height: "200px" }}> <Slider {...settings}>
-            <div>
-              <img width={"900px"} height={"400px"} src={Banner} />
+         
+        <div className='displayscn' >
+          <div style={{width:"50%",height:"100%",display:"flex",columnGap:"1rem",backgroundColor:"lightgrey"}}>
+            <div className='Layoutcard' style={{backgroundColor:"#febf05",marginLeft:"0.8rem"}}>
+             <h1>Quiz</h1>
+             <div class="typeeffect" >
+             <Type String={stringsQ} deleteSpeed={50}/>
+             </div>
+             
             </div>
-            <div>
-              <img width={"900px"} height={"400px"} src={Banner1} />
-            </div>
-            <div>
-              <img width={"900px"} height={"400px"} src={Banner2} />
-            </div>
-            <div>
-              <img width={"900px"} height={"400px"} src={Banner3} />
-            </div>
-            <div>
-              <img width={"900px"} height={"400px"} src={Banner4} />
-            </div>
-            <div>
-              <img width={"900px"} height={"400px"} src={Banner5} />
-            </div>
-          </Slider>
+            <div className='Layoutcard'style={{backgroundColor:"#febf05"}}>
+             <h2>Read Blogs</h2>
+             <div class="typeeffect">
+             <Type String={stringsB} deleteSpeed={70}/>
+             </div>
+             
+             </div>
+            <div className='Layoutcard' style={{backgroundColor:"#febf05"}}>
+             <h2>Notes</h2>
+             <div class="typeeffect">
+             <Type String={stringsP} deleteSpeed={40}/>
+             </div>
+          
+             </div>
+             
           </div>
-        </div>
+         
+          <div>
+            <img src={logo}></img>
+           <button style={{width:"100px"}} className='buttondesign'> Let's Begin <ArrowRightOutlined /></button>
+          </div>
+       
 
-        <div>
-          <Footer />
         </div>
+        
       </div>
 
 
@@ -114,3 +151,6 @@ const Layout = () => {
 }
 
 export default Layout;
+
+
+

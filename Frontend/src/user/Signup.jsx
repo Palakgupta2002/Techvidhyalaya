@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import "./Signup.css";
-import Forgetpas from "./Forgetpas";
+import {  Checkbox } from 'antd';
+import logo from "../user/images/Ever.png"
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import context from "./context";
 
 const Signup = ({ setIsModalOpen }) => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
+  const { globalEmail, setGlobalEmail } = useContext(context);
 
   const handleSubmit = async (values) => {
     try {
@@ -14,13 +20,17 @@ const Signup = ({ setIsModalOpen }) => {
         headers: {
           "Content-type": "application/json",
         },
-      });
+       
+      }
+      
+      );
 
       if (response.status === 200) {
         const data = await response.json();
         if (data.message === "User registered successfully") {
           message.success("Signup successful");
           setIsModalOpen(false);
+          navigate("/Home");
           // Reset the form
           form.resetFields();
         } else {
@@ -32,14 +42,23 @@ const Signup = ({ setIsModalOpen }) => {
     } catch (error) {
       console.error(error);
     }
+    
   };
+  console.log(globalEmail,"hello")
 
   return (
-    <div className="signupBox">
-      <div className="formSection">
-        <Form form={form} onFinish={handleSubmit}>
+   
+    <div className="login-page">
+      
+        <div className="illustration-wrapper">
+          <img  src={logo} alt="Login" />
+        </div>
+        
+        <Form className="form" form={form} onFinish={handleSubmit} >
+          <h1 style={{marginLeft:"8rem"}}>Signup</h1>
+          <label className="label">Username</label>
           <Form.Item
-            label="Username"
+            
             name="username"
             rules={[
               {
@@ -50,9 +69,9 @@ const Signup = ({ setIsModalOpen }) => {
           >
             <Input className="inputbox" />
           </Form.Item>
-
+          <label>College</label>
           <Form.Item
-            label="College"
+           
             name="college"
             rules={[
               {
@@ -63,9 +82,9 @@ const Signup = ({ setIsModalOpen }) => {
           >
             <Input className="inputbox" />
           </Form.Item>
-
+          <label>Email-ID</label>
           <Form.Item
-            label="Email-id"
+           
             name="email"
             rules={[
               {
@@ -78,11 +97,11 @@ const Signup = ({ setIsModalOpen }) => {
               },
             ]}
           >
-            <Input className="inputbox" />
+            <Input onChange={(e)=>{setGlobalEmail(e.target.value)}} className="inputbox" />
           </Form.Item>
-
+          <label>Phone no</label>
           <Form.Item
-            label="Phone no."
+           
             name="phone"
             rules={[
               {
@@ -97,9 +116,9 @@ const Signup = ({ setIsModalOpen }) => {
           >
             <Input className="inputbox" />
           </Form.Item>
-
+          <label>Password</label>
           <Form.Item
-            label="Password"
+           
             name="password"
             rules={[
               {
@@ -112,13 +131,13 @@ const Signup = ({ setIsModalOpen }) => {
           </Form.Item>
 
           <Form.Item>
-            <Button className="button" type="primary" htmlType="submit">
-              Submit
+            <Button style={{marginLeft:"8rem"}} className="buttondesign" type="primary" htmlType="submit">
+              Signup
             </Button>
           </Form.Item>
         </Form>
-        <Forgetpas />
-      </div>
+       
+      
     </div>
   );
 };

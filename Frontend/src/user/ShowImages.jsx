@@ -3,7 +3,11 @@ import Share from './Share'; // Import your Share component
 import Download from './Download'; // Import your Download component
 import { Button, Modal } from 'antd';
 import { Document, Page, pdfjs } from 'react-pdf';
- // Import react-pdf for PDF rendering
+import Report from './Report';
+import { MoreOutlined } from '@ant-design/icons';
+import {ShareAltOutlined } from '@ant-design/icons'
+import {DownloadOutlined } from '@ant-design/icons'
+// Import react-pdf for PDF rendering
 
 // Configure PDF.js worker source
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
@@ -14,9 +18,10 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
   const [contentType, setContentType] = useState('');
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [offendemail,setoffendemail]=useState("")
-  const [ReportImageLink,SetReportImageLink]=useState("");
-  console.log(ReportImageLink,"REport ")
+  const [offendemail, setoffendemail] = useState("")
+  const [ReportImageLink, SetReportImageLink] = useState("");
+  const [selectedPost, setSelectedPost] = useState(null);
+  console.log(ReportImageLink, "REport ")
 
   // Function to show the modal with content
   const showModal = (imageUrl, contentType) => {
@@ -35,7 +40,7 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
- 
+
 
   // Function to handle PDF page click
   const handlePageClick = () => {
@@ -56,6 +61,22 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
+  const [isModalVisibleP, setIsModalVisibleP] = useState(false);
+ 
+
+  const showModalP = (post) => {
+    setSelectedPost(post);
+    setIsModalVisibleP(true);
+  };
+
+  const handleOkP = () => {
+    setIsModalVisibleP(false);
+  };
+
+  const handleCancelP = () => {
+    setIsModalVisibleP(false);
+  };
+
 
   return (
     <div>
@@ -63,8 +84,8 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
         <ul style={{ width: "800px", listStyle: "none" }}>
           <h3>user profiles</h3>
           {profilesToMap.map((profile, index) => (
-            <li style={{ width: "450px", marginLeft: "100px" }} key={index}>
-              <p>{profile.username}</p>
+            <li style={{ width: "500px", marginLeft: "100px"}} key={index}>
+              {/* <p>{profile.username}</p> */}
               <ul style={{ listStyle: 'none' }}>
                 {(profile.image || [])
                   .filter((image) => {
@@ -79,10 +100,10 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
                     );
                   })
                   .map((image, imageIndex) => (
-                    <li style={{ border: "2px solid red", marginTop: "20px" }} key={imageIndex}>
+                    <li style={{ border: "2px solid grey", marginTop: "20px",borderRadius:"20px" }} key={imageIndex}>
                       {(image !== null && image.data && image.contentType) && (
                         <>
-                          <p style={{ borderBottom: "2px solid red", padding: "10px", textAlign: "start" }}>{image.description}</p>
+                          <p style={{ borderBottom: "2px solid grey", padding: "10px", textAlign: "start" }}>{image.description}</p>
                           {image.contentType.startsWith('image/') && (
                             <img
                               width={'400px'}
@@ -97,25 +118,20 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
                           )}
                           {image.contentType === 'application/pdf' && (
                             // Render a PDF viewer for PDF files
-                            <div>
-                              <Document
-                                file={URL.createObjectURL(
+                            <div> 
+                              <iframe style={{}}
+                              
+                                src={URL.createObjectURL(
                                   new Blob([new Uint8Array(image.data.data)], {
                                     type: image.contentType,
                                   })
                                 )}
-                                onLoadSuccess={onDocumentLoadSuccess}
-                                onClick={handleContentClick}
-                              >
-                                {Array.from(new Array(numPages), (el, index) => (
-                                  <Page
-                                    key={`page_${index + 1}`}
-                                    pageNumber={index + 1}
-                                    onClick={handlePageClick}
-                                  />
-                                ))}
-                              </Document>
-                              <p>Page {pageNumber} of {numPages}</p>
+                                width="90%"
+                                height="500px"
+                                frameBorder="0"
+                              ></iframe>
+                              
+
                             </div>
                           )}
                           {image.contentType.startsWith('video/') && (
@@ -132,17 +148,31 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
                               Your browser does not support the video tag.
                             </video>
                           )}
-                          <div style={{ borderTop: "2px solid red", padding: "10px" }}>
-                            <button onClick={()=>{
-                              setoffendemail(profile.email)
-                              SetReportImageLink(URL.createObjectURL(
-                                new Blob([new Uint8Array(image.data.data)], {
-                                  type: image.contentType,
-                                })
-                              ))
-                            }}>
-                            <Download offendemail={offendemail} ReportImageLink={ReportImageLink} />
-                            </button>
+                          <div style={{ borderTop: "2px solid grey", padding: "10px" }}>
+                            <div style={{width:"5.5rem",position:"absolute",marginLeft:"18rem"}}>
+                              <Button   type="primary" onClick={() => showModalP({ email: profile.email, reportImageLink: URL.createObjectURL(new Blob([new Uint8Array(image.data.data)], { type: image.contentType })) })}>
+                                More <MoreOutlined />
+                              </Button>
+                              <Modal
+                                title="Report about The Post"
+                                visible={isModalVisibleP && selectedPost && selectedPost.email === profile.email}
+                                onOk={handleOkP}
+                                onCancel={handleCancelP}
+                              >
+                                <button onClick={() => {
+
+                                  setoffendemail(profile.email)
+                                  SetReportImageLink(URL.createObjectURL(
+                                    new Blob([new Uint8Array(image.data.data)], {
+                                      type: image.contentType,
+                                    })
+                                  ))
+                                }}>
+                                  <Report offendemail={offendemail} ReportImageLink={ReportImageLink} />
+                                </button >
+                              </Modal>
+                            </div>
+                            <Download />
                             <button className='buttondesign' style={{ position: "absolute", marginTop: "-30px" }}
                               onClick={() =>
                                 showModal(
@@ -155,7 +185,7 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
                                 )
                               }
                             >
-                              Share
+                              <ShareAltOutlined />
                             </button>
                           </div>
                         </>
@@ -175,3 +205,4 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
 };
 
 export default ShowImages;
+

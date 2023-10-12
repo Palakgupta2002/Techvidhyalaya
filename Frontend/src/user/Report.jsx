@@ -4,9 +4,10 @@ import React, { useContext, useState } from 'react';
 import context from './context';
 
 const Report = ({ offendemail, ReportImageLink }) => {
-  const {globalEmail} = useContext(context);
+  const { globalEmail } = useContext(context);
   const [reportmaker, setReportmaker] = useState(globalEmail);
   const [reportdesc, setReportdesc] = useState('');
+  console.log(ReportImageLink)
 
   const handleReportmakerChange = (e) => {
     setReportmaker(e.target.value);
@@ -18,19 +19,38 @@ const Report = ({ offendemail, ReportImageLink }) => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
+    console.log(offendemail)
 
-    const formData = new FormData();
-    formData.append("ReportMakerEmail", reportmaker);
-    formData.append("OffenderEmail", offendemail.offendemail); // Updated here
-    formData.append("Reportdesc", reportdesc);
-    formData.append("ReportLink", ReportImageLink.ReportImageLink); // Updated here
-    console.log(formData,"formdata")
+    // const formData = new FormData();
+    // if(reportmaker && offendemail?.offendemail && reportdesc && ReportImageLink.ReportImageLink)
+    // formData.append("ReportMakerEmail", reportmaker);
+    // formData.append("OffenderEmail", offendemail.offendemail); // Updated here
+    // formData.append("ReportDesc", reportdesc);
+    // formData.append("ReportLink", ReportImageLink.ReportImageLink); // Updated here
+    // console.log(formData,"formdata")
+    // {
+    //   "ReportMakerEmail": "pg948303@gmail.com",
+    //   "OffenderEmail": "pg948303@gmail.com",
+    //   "ReportLink": "hiiisakndahdsknadbasj",
+    //   "ReportDesc": "Report description"
+    // }
+    let formData = {
+      ReportMakerEmail:reportmaker ,
+      OffenderEmail: offendemail.offendemail,
+      ReportLink:String(ReportImageLink), 
+      ReportDesc: reportdesc
 
+    }
     try {
       const response = await fetch('http://localhost:5000/ReportCreation', {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify(formData),
+        headers:{
+          "Content-Type":"application/json"
+
+        },
       });
+      
 
       if (response.status === 200) {
         alert('Report created successfully');
@@ -41,6 +61,7 @@ const Report = ({ offendemail, ReportImageLink }) => {
       console.log('Internal Error:', error);
     }
   };
+  console.log(ReportImageLink,"image")
 
   return (
     <div>

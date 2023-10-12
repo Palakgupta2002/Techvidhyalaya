@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { MoreOutlined } from '@ant-design/icons';
+import { DownloadOutlined  } from '@ant-design/icons';
 import Report from './Report';
 import { Modal, Button } from 'antd';
 
-function Download(offendemail,ReportImageLink) {
+
+function Download() {
   const [isModalVisible, setIsModalVisible] = useState(false);
  
 
@@ -18,6 +19,7 @@ function Download(offendemail,ReportImageLink) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+  
   
 
   const onButtonClick = () => {
@@ -43,23 +45,9 @@ function Download(offendemail,ReportImageLink) {
     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
      
       <div>
-        <button className='buttondesign' onClick={onButtonClick}>Download</button>
+        <button className='buttondesign' onClick={onButtonClick}><DownloadOutlined /></button>
       </div>
-      <div>
-        <Button className='buttondesign' type="primary" onClick={showModal}>
-          More <MoreOutlined />
-        </Button>
-        <Modal
-          title="Report about The Post"
-          visible={isModalVisible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <button onClick={()=>{}}>
-            <Report offendemail={offendemail} ReportImageLink={ReportImageLink}/>
-          </button>
-        </Modal>
-      </div>
+     
     </div>
   );
 }

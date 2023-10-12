@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Blog from './Blog.jpeg';
+import Blog from '../user/images/Blogs.jpeg';
 import { Select } from 'antd';
 
 export const BlogCreate = () => {
