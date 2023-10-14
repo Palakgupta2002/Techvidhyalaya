@@ -20,6 +20,7 @@
     "react-select": "^5.7.7",
     "react-share": "^4.4.1",
     "react-slick": "^0.29.0",
+    "react-text-truncate": "^0.19.0",
     "react-web-share": "^2.0.2",
     "reactjs-popup": "^2.0.6",
     "slick-carousel": "^1.8.1",

@@ -36,9 +36,9 @@ const Report = ({ offendemail, ReportImageLink }) => {
     // }
     let formData = {
       ReportMakerEmail:reportmaker ,
-      OffenderEmail: offendemail.offendemail,
-      ReportLink:String(ReportImageLink), 
-      ReportDesc: reportdesc
+      OffenderEmail: offendemail,
+      ReportLink:ReportImageLink, 
+      ReportDesc: reportdesc,
 
     }
     try {

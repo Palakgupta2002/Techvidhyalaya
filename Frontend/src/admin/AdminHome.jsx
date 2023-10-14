@@ -6,14 +6,15 @@ import context from "../user/context";
 import CreateQuiz from "./CreateQuiz";
 import { BlogCreate } from "../user/BlogCreate";
 import ReportPage from "./ReportPage";
+import { Button,Modal } from "antd";
 
 const Home = () => {
-  const {AdminLogin}=useContext(context)
+  const { AdminLogin } = useContext(context)
   const [profiles, setProfiles] = useState([]);
   const [selectedEmail, setSelectedEmail] = useState("");
   const [selectedLink, setSelectedLink] = useState("");
   const [searchquery, selectsearchquery] = useState("Programming");
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +32,31 @@ const Home = () => {
     setSelectedEmail(email);
     setSelectedLink(link);
   };
-  console.log(selectedEmail, selectedLink);
+
+  const [isModalOpenQ, setIsModalOpenQ] = useState(false);
+  const showModalQ = () => {
+    setIsModalOpenQ(true);
+
+  };
+  const handleOkQ = () => {
+    setIsModalOpenQ(false);
+  };
+  const handleCancelQ = () => {
+    setIsModalOpenQ(false);
+  };
+  const [visible, setVisible] = useState(false);
+
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setVisible(false);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+  };
 
   return (
     <div>
@@ -48,7 +73,30 @@ const Home = () => {
          <ShowImages  profilesToMap={profiles} globalemail={AdminLogin}  searchQuery={searchquery}/>
         </div>
       </div> */}
-      <ReportPage/>
+      <div style={{ display: "flex",justifyContent:'center',gap:"20px",marginTop:"2rem" }}> <div>
+        <Button  className="buttondesign" type="primary" onClick={showModalQ} >
+          Create Your Quiz
+        </Button>
+        <Modal open={isModalOpenQ} onOk={handleOkQ} onCancel={handleCancelQ}>
+          <h3>Create Quiz</h3>
+          <CreateQuiz globalemail={"anshu_chaturvedi@mitsgwalior.in"} />
+        </Modal>
+      </div>
+      <div>
+            <Button className="buttondesign" type="primary" onClick={showModal} style={{ }}>
+              Create Blog
+            </Button>
+            <Modal
+              title="Create a Blog"
+              visible={visible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <BlogCreate />
+            </Modal>
+          </div>
+      </div>
+      <ReportPage />
     </div>
   );
 };

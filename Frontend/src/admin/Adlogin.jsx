@@ -49,7 +49,7 @@ export const Adlogin = () => {
   
 
   return (
-    <div className="login-page">
+    <div style={{marginTop:"4rem"}} className="login-page">
       <div className="login-box">
         <div className="illustration-wrapper">
           <img src={logo} alt="Login" />

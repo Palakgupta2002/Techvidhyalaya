@@ -27,6 +27,7 @@ const DeletePost = ({ globalEmail, selectedImageId }) => {
       console.log("Error occurred:", error);
     }
   };
+  
 
   return (
     <div>

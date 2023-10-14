@@ -160,13 +160,9 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
                                 onCancel={handleCancelP}
                               >
                                 <button onClick={() => {
-
-                                  setoffendemail(profile.email)
-                                  SetReportImageLink(URL.createObjectURL(
-                                    new Blob([new Uint8Array(image.data.data)], {
-                                      type: image.contentType,
-                                    })
-                                  ))
+                                  console.log(profile?.email)
+                                  setoffendemail(profile?.email)
+                                  SetReportImageLink(image?._id)
                                 }}>
                                   <Report offendemail={offendemail} ReportImageLink={ReportImageLink} />
                                 </button >
@@ -205,4 +201,3 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
 };
 
 export default ShowImages;
-

@@ -55,7 +55,7 @@ export const Login = () => {
           onChange={handlechange}
         />
         
-        <label >Username</label>
+        <label >Password</label>
         
         <Input style={{marginTop:"0.5rem",marginBottom:"0.5rem"}}
           type="text"

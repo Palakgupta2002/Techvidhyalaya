@@ -1,8 +1,16 @@
 import React from 'react'
+import  ShowReports  from './ShowReports'
+import CreateQuiz from './CreateQuiz'
+import { BlogCreate } from '../user/BlogCreate'
 
 const ReportPage = () => {
   return (
-    <div>ReportPage</div>
+    <div>
+      <ShowReports/>
+
+      </div>
+
+   
   )
 }
 

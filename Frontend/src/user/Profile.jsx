@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { EditOutlined } from '@ant-design/icons'
-
+import Type from "./Type.jsx"
+import { Input } from "antd";
 
 
 
@@ -21,7 +22,8 @@ function Profile() {
   // const formData={
   //   username:
   // }
-  const handleUpdateProfile=()=>{
+  const handleUpdateProfile=(e)=>{
+    console.log()
     try{
 
 
@@ -33,15 +35,17 @@ function Profile() {
 
 
   return (
-    <div style={{border:"2px solid red",width:'300px',height:"300px",padding:"40px "}}>
+    <div style={{width:'300px',height:"300px",padding:"40px",backgroundColor:"#d3b094"}}>
       {console.log(setUserProfile)}
       {userProfile && (
         <div>
-          <h2>User Profile</h2>
-          <p>Username: {userProfile.username}<EditOutlined onClick={handleUpdateProfile} /></p>
-          <p>College: {userProfile.college}<EditOutlined onClick={handleUpdateProfile}/></p>
-          <p>Email: {userProfile.email}<EditOutlined onClick={handleUpdateProfile}/></p>
-          <p>Phone: {userProfile.phone}<EditOutlined onClick={handleUpdateProfile}/></p>
+         <div style={{marginLeft:"4rem"}}><h2><Type String={[`Hii!  ${ userProfile.username}`]}/></h2></div>
+          <Input style={{marginBottom:"0.5rem",marginTop:"1rem"}} value={userProfile.username}/>
+          <Input style={{marginBottom:"0.5rem"}} value={userProfile.email}/>
+          <Input style={{marginBottom:"0.5rem"}} value={userProfile.phone}/>
+          <Input style={{marginBottom:"0.5rem"}} value={userProfile.college}/>
+         <button style={{marginLeft:"6rem"}} className="buttondesign">Update</button>
+         
         </div>
       )}
     </div>

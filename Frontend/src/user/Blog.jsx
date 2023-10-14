@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { Modal, Button } from 'antd';
 import ShowBlog from '../user/ShowBlog';
 import logo from "../user/images/Ever.png"
+import Type from './Type';
 
 
 const Blog = () => {
@@ -43,7 +44,9 @@ const Blog = () => {
             </Modal>
           </div>
         </div>
+        <div><h1 className='typeeffect' ><Type String={["Read Blogs","Enhance Your Knowledge"]}></Type></h1></div>
         <div><ShowBlog /></div>
+        
       </div>
     </div>
   );

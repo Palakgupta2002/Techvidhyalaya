@@ -88,6 +88,7 @@ const Home = () => {
   const [isModalOpenS, setIsModalOpenS] = useState(false);
   const showModalS = () => {
     setIsModalOpenS(true);
+   
   };
   const handleOkS = () => {
     setIsModalOpenS(false);
@@ -104,6 +105,17 @@ const Home = () => {
   };
   const handleCancelN = () => {
     setIsModalOpenN(false);
+  };
+  const [isModalOpenQ, setIsModalOpenQ] = useState(false);
+  const showModalQ = () => {
+    setIsModalOpenQ(true);
+    setShowCreateQuiz(true)
+  };
+  const handleOkQ = () => {
+    setIsModalOpenQ(false);
+  };
+  const handleCancelQ = () => {
+    setIsModalOpenQ(false);
   };
   useEffect(() => {
     handleSearch()
@@ -151,14 +163,19 @@ const Home = () => {
 
       </nav>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div>
-          <button style={{marginTop:"30px"}} className="buttondesign" onClick={() =>
-            setShowCreateQuiz(true)
-          }>Create Your Quiz</button>
+        
+      <div>
+            <Button style={{marginTop:"6rem"}} className="buttondesign" type="primary" onClick={showModalQ} >
+              Create Your Quiz
+            </Button>
+            <Modal open={isModalOpenQ} onOk={handleOkQ} onCancel={handleCancelQ}>
+              <h3>Create Quiz</h3>
+            {showCreateQuiz && <CreateQuiz globalemail={globalemail} setShowCreateQuiz={setShowCreateQuiz} />}
+            </Modal>
+           
+            <ShowQuiz/>
 
-          {showCreateQuiz && <CreateQuiz globalemail={globalemail} setShowCreateQuiz={setShowCreateQuiz} />}
-          <ShowQuiz/>
-        </div>
+          </div>
         <div>
           
           <div>

@@ -3,7 +3,7 @@ import 'reactjs-popup/dist/index.css';
 import Login from "./login"
 import Signup from "./Signup"
 import { Button, Modal } from 'antd';
-import {ArrowRightOutlined}  from '@ant-design/icons'
+import { ArrowRightOutlined } from '@ant-design/icons'
 
 import logo from "./images/Ever.png"
 import { useState } from 'react';
@@ -12,8 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import Type from './Type';
 // import Carousel from 'react-spring-3d-carousel';
 const Layout = () => {
-  const [background,setbackground]=useState("#f3bc3e" )
-  const [onclicktrue,setonclicktrue]=useState(false)
+  const [background, setbackground] = useState("#f3bc3e")
+  const [onclicktrue, setonclicktrue] = useState(false)
   const navigate = useNavigate();
   var settings = {
     dots: true,
@@ -22,31 +22,31 @@ const Layout = () => {
     slidesToShow: 1,
     slidesToScroll: 1
   };
-  const stringsQ=[
+  const stringsQ = [
     "Unleash Your Inner Quizmaster!",
-"Quiz Time: Challenge Accepted!",
-"Elevate Your Knowledge, One Quiz at a Time.",
-"Knowledge is Power, Play to Empower!",
-"Quiz It Up: Where Learning Meets Fun.",
-"Test Your Wits with Our Exciting Quizzes.",
-"Dive into the World of Quizzes & Discover!",
-"Join the Quiz Revolution – Are You Ready?",
-"Quizzes: Where Curiosity Meets Entertainment.",
-"Sharpen Your Mind, Play a Quiz Today!",
+    "Quiz Time: Challenge Accepted!",
+    "Elevate Your Knowledge, One Quiz at a Time.",
+    "Knowledge is Power, Play to Empower!",
+    "Quiz It Up: Where Learning Meets Fun.",
+    "Test Your Wits with Our Exciting Quizzes.",
+    "Dive into the World of Quizzes & Discover!",
+    "Join the Quiz Revolution – Are You Ready?",
+    "Quizzes: Where Curiosity Meets Entertainment.",
+    "Sharpen Your Mind, Play a Quiz Today!",
   ]
-  const stringsB=[
+  const stringsB = [
     "Tech Notes: Where Knowledge Meets Innovation.",
-"Empower Your Tech Journey with Notes.",
-"Explore, Learn, and Share Tech Insights.",
-"Tech Enthusiasts Unite: Create and Contribute.",
-"Notes for the Tech-Savvy Mind.",
-"From Ideas to Innovation: Start with Notes.",
-"Elevate Your Tech Game, One Note at a Time.",
-"Connecting Tech Minds, One Note Sharing.",
-"Tech Notes: Fueling Creativity, Igniting Ideas.",
-"Build, Collaborate, and Innovate with Tech Notes."
+    "Empower Your Tech Journey with Notes.",
+    "Explore, Learn, and Share Tech Insights.",
+    "Tech Enthusiasts Unite: Create and Contribute.",
+    "Notes for the Tech-Savvy Mind.",
+    "From Ideas to Innovation: Start with Notes.",
+    "Elevate Your Tech Game, One Note at a Time.",
+    "Connecting Tech Minds, One Note Sharing.",
+    "Tech Notes: Fueling Creativity, Igniting Ideas.",
+    "Build, Collaborate, and Innovate with Tech Notes."
   ]
-  const stringsP=[
+  const stringsP = [
     "Navigating the Tech World Together.",
     "Explore Blogs, Ace Quizzes, and More!",
     "Your Gateway to Success: Placement Tips & More.",
@@ -79,6 +79,9 @@ const Layout = () => {
   const handleLogin = () => {
     setLogin(false);
   };
+  const Admin = () => {
+    navigate("/Adlogin");
+  }
   return (
     <div>
       <div>
@@ -94,7 +97,7 @@ const Layout = () => {
               </Button>
               <div >
                 <Modal centered width={800} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} >
-                    < Signup setIsModalOpen={setIsModalOpen} />
+                  < Signup setIsModalOpen={setIsModalOpen} />
                 </Modal>
               </div>
             </li>
@@ -106,43 +109,49 @@ const Layout = () => {
                 <Login />
               </Modal>
             </li>
+            <li>
+            <button className='buttondesign' onClick={Admin}>Admin</button>
+            </li>
           </ul>
         </nav>
-         
+
         <div className='displayscn' >
-          <div style={{width:"50%",height:"100%",display:"flex",columnGap:"1rem",backgroundColor:"lightgrey"}}>
-            <div className='Layoutcard' style={{backgroundColor:"#febf05",marginLeft:"0.8rem"}}>
-             <h1>Quiz</h1>
-             <div class="typeeffect" >
-             <Type String={stringsQ} deleteSpeed={50}/>
-             </div>
-             
+          <div style={{ width: "50%", height: "100%", display: "flex", columnGap: "1rem", backgroundColor: "#d3b094" }}>
+            <div className='Layoutcard' style={{ backgroundColor: "#febf05", marginLeft: "0.8rem" }}>
+              <h1>Quiz</h1>
+              <div class="typeeffect" >
+                <Type String={stringsQ} deleteSpeed={50} />
+              </div>
+
             </div>
-            <div className='Layoutcard'style={{backgroundColor:"#febf05"}}>
-             <h2>Read Blogs</h2>
-             <div class="typeeffect">
-             <Type String={stringsB} deleteSpeed={70}/>
-             </div>
-             
-             </div>
-            <div className='Layoutcard' style={{backgroundColor:"#febf05"}}>
-             <h2>Notes</h2>
-             <div class="typeeffect">
-             <Type String={stringsP} deleteSpeed={40}/>
-             </div>
-          
-             </div>
-             
+            <div className='Layoutcard' style={{ backgroundColor: "#febf05" }}>
+              <h2>Read Blogs</h2>
+              <div class="typeeffect">
+                <Type String={stringsB} deleteSpeed={70} />
+              </div>
+
+            </div>
+            <div className='Layoutcard' style={{ backgroundColor: "#febf05" }}>
+              <h2>Notes</h2>
+              <div class="typeeffect">
+                <Type String={stringsP} deleteSpeed={40} />
+              </div>
+
+            </div>
+
           </div>
-         
+
           <div>
             <img src={logo}></img>
-           <button style={{width:"100px"}} className='buttondesign'> Let's Begin <ArrowRightOutlined /></button>
+            <button style={{ width: "100px" }} className='buttondesign' onClick={()=>{
+              alert("Read More interesting")
+            }} > Let's Begin <ArrowRightOutlined /></button>
+            
           </div>
-       
+
 
         </div>
-        
+
       </div>
 
 
