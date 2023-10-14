@@ -358,6 +358,44 @@ server.post('/updateProfile', (req, res) => {
     },
   )
 })
+//Map a images of Reports for Admin Dashboard
+
+server.get('/ShowReports', async (req, res) => {
+  try {
+    const reports = await Report.find();
+    const users = await User.find();
+
+    const matchedData = [];
+
+    // Loop through reports and users to find matches
+    for (const report of reports) {
+      for (const user of users) {
+        if (
+          report.OffenderEmail=== user.email 
+          
+        ) {
+         
+          const matchedItem = {
+            report,
+            user,
+            
+          };
+
+          matchedData.push(matchedItem);
+        }
+      }
+    }
+
+    res.json(matchedData);
+    console.log(matchedData) // Send the matched data with image as a JSON response to the frontend
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+
+
 
 server.use((req, res) => {
   res.status(404).json({ error: 'Not found' })
