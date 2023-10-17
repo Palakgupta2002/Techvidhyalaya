@@ -48,7 +48,7 @@ const Signup = ({ setIsModalOpen }) => {
 
   return (
    
-    <div className="login-page">
+    <div style={{}} className="login-page">
       
         <div className="illustration-wrapper">
           <img  src={logo} alt="Login" />
@@ -131,7 +131,7 @@ const Signup = ({ setIsModalOpen }) => {
           </Form.Item>
 
           <Form.Item>
-            <Button style={{marginLeft:"8rem"}} className="buttondesign" type="primary" htmlType="submit">
+            <Button  style={{marginLeft:"3rem",width:"70%"}} className="buttondesign" type="primary" htmlType="submit">
               Signup
             </Button>
           </Form.Item>

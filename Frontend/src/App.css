@@ -191,9 +191,10 @@ iframe{
 .illustration-wrapper {
   display: flex;
   align-items: flex-end;
-  max-width: 800px;
+  width: 100%;
   min-height: 100%;
-  background-color: #fffdf2;
+  background: rgb(243,188,62);
+  background: linear-gradient(90deg, rgba(243,188,62,1) 0%, rgba(255,255,255,1) 100%);
  
 }
 .illustration-wrapper img {
@@ -273,7 +274,7 @@ iframe{
   
   width: 70%;
   padding: 20px;
-  border: 2px solid grey;
+ 
 }
 .displayscn {
   width: 93%;
@@ -281,7 +282,7 @@ iframe{
   margin: 3rem;
  
   display: flex;
-  background-colo: wheat;
+ 
   z-index: -999; /* Change this value to the desired z-index */
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 5px;
@@ -353,7 +354,15 @@ iframe{
   display: block;
 }
 .ant-modal {
+  background: rgb(243,188,62) !important;
+  background: linear-gradient(90deg, rgba(243,188,62,1) 0%, rgba(255,255,255,1) 100%) !important;
   
+}
+.loginimage{
+  background: rgb(243,188,62);
+  background: linear-gradient(90deg, rgba(243,188,62,1) 0%, rgba(255,255,255,1) 100%);
+ 
+
 }
 
 

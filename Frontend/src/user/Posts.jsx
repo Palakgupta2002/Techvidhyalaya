@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import context from "./context";
 import { PlusOutlined } from "@ant-design/icons";
 import Select from "react-select";
+import {Input} from "antd";
 
 const Posts = () => {
   const [image, setImage] = useState(null);
@@ -70,21 +71,22 @@ const Posts = () => {
   };
 
   return (
-    <div>
+    <div style={{padding:"15px"}}> 
       <form onSubmit={handlePostSubmit}>
-        <input type="file" name="image" onChange={handleImageChange} />
-        <textarea
+        <Input type="file" name="image" onChange={handleImageChange} />
+        <textarea style={{height:"90px",color:"black",fontSize:"18px"}}
           className="textarea"
-          placeholder="Enter a title for your post"
+          placeholder="Enter a title of your post"
           value={title}
           onChange={handleTitleChange}
         />
-        <Select
+        <Select 
+        placeholder="Select a Type"
           value={selectedOption}
           onChange={handleOptionChange}
           options={options}
         />
-        <button type="submit">Create Post</button>
+        <button className="buttondesign" style={{marginTop:'1rem',marginLeft:"40%"}} type="submit">Create Post</button>
       </form>
     </div>
   );

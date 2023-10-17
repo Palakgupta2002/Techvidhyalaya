@@ -42,8 +42,8 @@ export const Login = () => {
   return (
     <div style={{width:"40rem",height:"20rem",display:"flex"}}>
       {/* This is a Form  */}
-      <div style={{width:"50%"}} ><img width={"350px"} src={logo}></img></div>
-      <div style={{width:"50%",border:"1px solid grey",padding:"15px"}}>
+      <div className="loginimage" style={{width:"50%"}} ><img width={"350px"} src={logo}></img></div>
+      <div style={{width:"50%",padding:"15px"}}>
       <h1 style={{marginLeft:"8rem"}}>Login</h1>
       <form style={{width:"100%"}} onSubmit={handleSubmit}>
         <label style={{}}>Username</label>
@@ -64,7 +64,7 @@ export const Login = () => {
           onChange={handlechange}
         />
         <br></br>
-        <button type="submit" style={{marginLeft:"8rem",marginTop:"2rem"}} className="buttondesign">submit</button>
+        <button type="submit" style={{marginLeft:"2rem",marginTop:"2rem",width:"70%"}} className="buttondesign">submit</button>
       </form>
       </div>
     </div>

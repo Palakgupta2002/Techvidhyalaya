@@ -4,7 +4,6 @@ import Login from "./login"
 import Signup from "./Signup"
 import { Button, Modal } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons'
-
 import logo from "./images/Ever.png"
 import { useState } from 'react';
 
@@ -144,7 +143,7 @@ const Layout = () => {
           <div>
             <img src={logo}></img>
             <button style={{ width: "100px" }} className='buttondesign' onClick={()=>{
-              alert("Read More interesting")
+              alert("Please Signup or login First")
             }} > Let's Begin <ArrowRightOutlined /></button>
             
           </div>

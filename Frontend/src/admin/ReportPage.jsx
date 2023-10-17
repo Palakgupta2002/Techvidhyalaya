@@ -6,6 +6,7 @@ import { BlogCreate } from '../user/BlogCreate'
 const ReportPage = () => {
   return (
     <div>
+      
       <ShowReports/>
 
       </div>

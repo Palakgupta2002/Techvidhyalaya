@@ -56,15 +56,16 @@ const ShowBlog = () => {
       ) : (
         blogsData.map((item, index) => (
           <>
+          {console.log(item,"item")}
             <div className='BlogCard'>
-              <h3>{item?.Blogtitle || "Blog"}</h3>
-              {item.Blogimage && item.Blogimage?.BcontentType && item.Blogimage?.Bdata ? (
+              <h3>{item?.Blogtitle===undefined?"Blog":item?.Blogtitle}</h3>
+              {item?.Blogimage && item?.Blogimage?.BcontentType && item?.Blogimage?.Bdata ? (
                 <img
                   width={"200px"}
                   height={"150px"}
                   src={URL.createObjectURL(
-                    new Blob([new Uint8Array(item.Blogimage.Bdata.data)], {
-                      type: item.Blogimage?.BcontentType,
+                    new Blob([new Uint8Array(item?.Blogimage.Bdata.data)], {
+                      type: item?.Blogimage?.BcontentType,
                     })
                   )}
                   alt={`Blog ${index}`}
@@ -73,23 +74,24 @@ const ShowBlog = () => {
                 <img width={"200px"} height={"150px"} src={require('./images/Blogs.jpeg')} alt={`Blog ${index}`} />
               )}
               <p>
+                {console.log(item?.BlogDes)}
                 <TextTruncate
                   line={2.9}
                   element="span"
                   truncateText="…...."
-                  text={item.BlogDes}
+                  text={item?.BlogDes}
                   textTruncateChild={<div>
                     <Button className="buttondesign" type="primary" onClick={() => showModal(item)}>
                       Read More
                     </Button>
-                    <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                    <Modal width={"90%"} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                       <h3>{selectedItem?.Blogtitle || "Blog"}</h3>
                       {selectedItem?.Blogimage && selectedItem?.Blogimage?.BcontentType && selectedItem?.Blogimage?.Bdata ? (
                         <img
                           width={"200px"}
                           height={"150px"}
                           src={URL.createObjectURL(
-                            new Blob([new Uint8Array(selectedItem.Blogimage.Bdata.data)], {
+                            new Blob([new Uint8Array(selectedItem?.Blogimage?.Bdata?.data)], {
                               type: selectedItem?.Blogimage?.BcontentType,
                             })
                           )}
@@ -104,7 +106,7 @@ const ShowBlog = () => {
                   </div>}
                 />
               </p>
-              <span>{`Creation date ${new Date(item.Blogdate).toLocaleString()}`}</span>
+              <span>{`Creation date ${new Date(item?.Blogdate).toLocaleString()}`}</span>
 
             </div>
           </>
