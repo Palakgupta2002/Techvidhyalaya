@@ -251,8 +251,14 @@ server.delete('/DeletePost', async (req, res) => {
 
     // Find the index of the image with the matching _id
     const imageIndex = user.image.findIndex(
-      (image) => image._id.toString() === ImageId,
+      
+      (image) =>
+      
+      image._id.toString() === ImageId
+       
     )
+    console.log(imageIndex,"imageindex")
+    
 
     if (imageIndex === -1) {
       return res.status(404).json({ error: 'Image not found' })
