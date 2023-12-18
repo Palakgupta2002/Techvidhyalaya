@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import context from "./context";
 import { PlusOutlined } from "@ant-design/icons";
 import Select from "react-select";
-import {Input} from "antd";
+import { Input } from "antd";
 
 const Posts = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const { globalEmail, setpostcreate } = useContext(context);
-  const [selectedOption, setSelectedOption] = useState(null); 
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const options = [
     { value: "College Notes", label: "College Notes" },
@@ -18,9 +18,9 @@ const Posts = () => {
 
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
-    
-      setImage(selectedFile);
-    
+
+    setImage(selectedFile);
+
   };
 
   const handleTitleChange = (e) => {
@@ -43,10 +43,10 @@ const Posts = () => {
     formData.append("image", image);
     formData.append("description", title);
     formData.append("email", globalEmail);
-    formData.append("selectedOption",selectedOption.value ); // Use the same key as in the backend
+    formData.append("selectedOption", selectedOption.value); // Use the same key as in the backend
 
-  
-    
+
+
 
     try {
       const response = await fetch("http://localhost:5000/CreatePost", {
@@ -71,22 +71,23 @@ const Posts = () => {
   };
 
   return (
-    <div style={{padding:"15px"}}> 
+    <div style={{ padding: "15px" }}>
       <form onSubmit={handlePostSubmit}>
         <Input type="file" name="image" onChange={handleImageChange} />
-        <textarea style={{height:"90px",color:"black",fontSize:"18px"}}
+        <textarea style={{ height: "90px", color: "black", fontSize: "18px" }}
           className="textarea"
           placeholder="Enter a title of your post"
           value={title}
           onChange={handleTitleChange}
         />
-        <Select 
-        placeholder="Select a Type"
+        
+        <Select
+          placeholder="Select a Type"
           value={selectedOption}
           onChange={handleOptionChange}
           options={options}
         />
-        <button className="buttondesign" style={{marginTop:'1rem',marginLeft:"40%"}} type="submit">Create Post</button>
+        <button className="buttondesign" style={{ marginTop: '1rem', marginLeft: "40%" }} type="submit">Create Post</button>
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
 import { Button, Input, Select } from 'antd';
 import React, { useState } from 'react';
 
-const CreateQuiz = ({ AdminLogin ,setShowCreateQuiz}) => {
+const CreateQuiz = ({ AdminLogin, setShowCreateQuiz }) => {
   const [formData, setFormData] = useState({
     Question: '',
     Option1: '',
@@ -61,44 +61,45 @@ const CreateQuiz = ({ AdminLogin ,setShowCreateQuiz}) => {
   };
 
   return (
-    <div style={{padding:"10px"}}>
+    <div style={{ padding: "10px" }}>
       <form onSubmit={handleSubmit} >
-        <Input style={{marginBottom:"0.8rem"}}
+        <Input style={{ marginBottom: "0.8rem" }}
           name="Question"
           value={formData.Question}
           placeholder="Write Your Question Here"
           onChange={handleInputChange}
         />
-        <Input style={{marginBottom:"0.8rem"}}
+        <Input style={{ marginBottom: "0.8rem" }}
           name="Option1"
           value={formData.Option1}
           placeholder="Write Your First Option"
           onChange={handleInputChange}
         />
-        <Input style={{marginBottom:"0.8rem"}}
+        <Input style={{ marginBottom: "0.8rem" }}
           name="Option2"
           value={formData.Option2}
           placeholder="Write Your Second Option"
           onChange={handleInputChange}
         />
-        <Input style={{marginBottom:"0.8rem"}}
+        <Input style={{ marginBottom: "0.8rem" }}
           name="Option3"
           value={formData.Option3}
           placeholder="Write Your Third Option"
           onChange={handleInputChange}
         />
-        <Input style={{marginBottom:"0.8rem"}}
+        <Input style={{ marginBottom: "0.8rem" }}
           name="Option4"
           value={formData.Option4}
           placeholder="Write Your Fourth Option"
           onChange={handleInputChange}
         />
-        <Select style={{marginBottom:"0.8rem"}}
+        <label>Answer  </label>
+        <Select style={{ marginBottom: "0.8rem" }}
           name="Answer"
           value={formData.Answer}
           onChange={handleAnswerChange} // Use handleAnswerChange for the Select component
           options={options}
-          
+
         />
         <Button className="buttondesign" type="primary" htmlType="submit">
           Submit

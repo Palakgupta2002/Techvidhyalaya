@@ -6,7 +6,7 @@ import context from "../user/context";
 import CreateQuiz from "./CreateQuiz";
 import { BlogCreate } from "../user/BlogCreate";
 import ReportPage from "./ReportPage";
-import { Button,Modal } from "antd";
+import { Button, Modal } from "antd";
 
 const Home = () => {
   const { AdminLogin } = useContext(context)
@@ -73,8 +73,8 @@ const Home = () => {
          <ShowImages  profilesToMap={profiles} globalemail={AdminLogin}  searchQuery={searchquery}/>
         </div>
       </div> */}
-      <div style={{ display: "flex",justifyContent:'center',gap:"20px",marginTop:"2rem" }}> <div>
-        <Button  className="buttondesign" type="primary" onClick={showModalQ} >
+      <div style={{ display: "flex", justifyContent: 'center', gap: "20px", marginTop: "2rem" }}> <div>
+        <Button className="buttondesign" type="primary" onClick={showModalQ} >
           Create Your Quiz
         </Button>
         <Modal open={isModalOpenQ} onOk={handleOkQ} onCancel={handleCancelQ}>
@@ -82,19 +82,19 @@ const Home = () => {
           <CreateQuiz globalemail={"anshu_chaturvedi@mitsgwalior.in"} />
         </Modal>
       </div>
-      <div>
-            <Button className="buttondesign" type="primary" onClick={showModal} style={{ }}>
-              Create Blog
-            </Button>
-            <Modal
-              title="Create a Blog"
-              visible={visible}
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <BlogCreate />
-            </Modal>
-          </div>
+        <div>
+          <Button className="buttondesign" type="primary" onClick={showModal} style={{}}>
+            Create Blog
+          </Button>
+          <Modal
+            title="Create a Blog"
+            visible={visible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <BlogCreate />
+          </Modal>
+        </div>
       </div>
       <ReportPage />
     </div>

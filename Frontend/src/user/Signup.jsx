@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import "./Signup.css";
-import {  Checkbox } from 'antd';
+import { Checkbox } from 'antd';
 import logo from "../user/images/Ever.png"
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -20,9 +20,9 @@ const Signup = ({ setIsModalOpen }) => {
         headers: {
           "Content-type": "application/json",
         },
-       
+
       }
-      
+
       );
 
       if (response.status === 200) {
@@ -30,7 +30,7 @@ const Signup = ({ setIsModalOpen }) => {
         if (data.message === "User registered successfully") {
           message.success("Signup successful");
           setIsModalOpen(false);
-          navigate("/Home");
+          alert("You are Succesfully Signup,pls login ")
           // Reset the form
           form.resetFields();
         } else {
@@ -42,102 +42,102 @@ const Signup = ({ setIsModalOpen }) => {
     } catch (error) {
       console.error(error);
     }
-    
+
   };
-  console.log(globalEmail,"hello")
+  console.log(globalEmail, "hello")
 
   return (
-   
-    <div style={{}} className="login-page">
-      
-        <div className="illustration-wrapper">
-          <img  src={logo} alt="Login" />
-        </div>
-        
-        <Form className="form" form={form} onFinish={handleSubmit} >
-          <h1 style={{marginLeft:"8rem"}}>Signup</h1>
-          <label className="label">Username</label>
-          <Form.Item
-            
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: "Username is required",
-              },
-            ]}
-          >
-            <Input className="inputbox" />
-          </Form.Item>
-          <label>College</label>
-          <Form.Item
-           
-            name="college"
-            rules={[
-              {
-                required: true,
-                message: "College name is required",
-              },
-            ]}
-          >
-            <Input className="inputbox" />
-          </Form.Item>
-          <label>Email-ID</label>
-          <Form.Item
-           
-            name="email"
-            rules={[
-              {
-                required: true,
-                message: "Email is required",
-              },
-              {
-                type: "email",
-                message: "Invalid email address",
-              },
-            ]}
-          >
-            <Input onChange={(e)=>{setGlobalEmail(e.target.value)}} className="inputbox" />
-          </Form.Item>
-          <label>Phone no</label>
-          <Form.Item
-           
-            name="phone"
-            rules={[
-              {
-                required: true,
-                message: "Phone number is required",
-              },
-              {
-                pattern: /^\d{10}$/,
-                message: "Invalid phone number",
-              },
-            ]}
-          >
-            <Input className="inputbox" />
-          </Form.Item>
-          <label>Password</label>
-          <Form.Item
-           
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Password is required",
-              },
-            ]}
-          >
-            <Input.Password className="inputbox" />
-          </Form.Item>
 
-          <Form.Item>
-            <Button  style={{marginLeft:"3rem",width:"70%"}} className="buttondesign" type="primary" htmlType="submit">
-              Signup
-            </Button>
-          </Form.Item>
-        </Form>
-       
-      
+    <div style={{}} className="login-page">
+
+      <div className="illustration-wrapper">
+        <img src={logo} alt="Login" />
+      </div>
+
+      <Form className="form" form={form} onFinish={handleSubmit} >
+        <h1 style={{ marginLeft: "8rem" }}>Signup</h1>
+        <label className="label">Username</label>
+        <Form.Item
+
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: "Username is required",
+            },
+          ]}
+        >
+          <Input className="inputbox" />
+        </Form.Item>
+        <label>College</label>
+        <Form.Item
+
+          name="college"
+          rules={[
+            {
+              required: true,
+              message: "College name is required",
+            },
+          ]}
+        >
+          <Input className="inputbox" />
+        </Form.Item>
+        <label>Email-ID</label>
+        <Form.Item
+
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Email is required",
+            },
+            {
+              type: "email",
+              message: "Invalid email address",
+            },
+          ]}
+        >
+          <Input onChange={(e) => { setGlobalEmail(e.target.value) }} className="inputbox" />
+        </Form.Item>
+        <label>Phone no</label>
+        <Form.Item
+
+          name="phone"
+          rules={[
+            {
+              required: true,
+              message: "Phone number is required",
+            },
+            {
+              pattern: /^\d{10}$/,
+              message: "Invalid phone number",
+            },
+          ]}
+        >
+          <Input className="inputbox" />
+        </Form.Item>
+        <label>Password</label>
+        <Form.Item
+
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Password is required",
+            },
+          ]}
+        >
+          <Input.Password className="inputbox" />
+        </Form.Item>
+
+        <Form.Item>
+          <Button style={{ marginLeft: "3rem", width: "70%" }} className="buttondesign" type="primary" htmlType="submit">
+            Signup
+          </Button>
+        </Form.Item>
+      </Form>
+
+
     </div>
   );
 };

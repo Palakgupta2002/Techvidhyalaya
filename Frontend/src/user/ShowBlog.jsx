@@ -56,9 +56,9 @@ const ShowBlog = () => {
       ) : (
         blogsData.map((item, index) => (
           <>
-          {console.log(item,"item")}
+            {console.log(item, "item")}
             <div className='BlogCard'>
-              <h3>{item?.Blogtitle===undefined?"Blog":item?.Blogtitle}</h3>
+              <h3>{item?.Blogtitle === undefined ? "Blog" : item?.Blogtitle}</h3>
               {item?.Blogimage && item?.Blogimage?.BcontentType && item?.Blogimage?.Bdata ? (
                 <img
                   width={"200px"}
@@ -85,9 +85,9 @@ const ShowBlog = () => {
                       Read More
                     </Button>
                     <Modal width={"90%"} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                      <h3>{selectedItem?.Blogtitle || "Blog"}</h3>
+                      <h1 style={{marginLeft:"570px"}}>{selectedItem?.Blogtitle || "Blog"}</h1>
                       {selectedItem?.Blogimage && selectedItem?.Blogimage?.BcontentType && selectedItem?.Blogimage?.Bdata ? (
-                        <img
+                        <img style={{marginLeft:"500px"}}
                           width={"200px"}
                           height={"150px"}
                           src={URL.createObjectURL(

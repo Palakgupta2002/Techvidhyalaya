@@ -22,12 +22,12 @@ function Profile() {
   // const formData={
   //   username:
   // }
-  const handleUpdateProfile=(e)=>{
+  const handleUpdateProfile = (e) => {
     console.log()
-    try{
+    try {
 
 
-    }catch(error){
+    } catch (error) {
 
     }
 
@@ -35,17 +35,17 @@ function Profile() {
 
 
   return (
-    <div style={{width:'300px',height:"300px",padding:"40px",backgroundColor:"#d3b094"}}>
+    <div style={{ width: '300px', height: "300px", padding: "40px", backgroundColor: "#d3b094" }}>
       {console.log(setUserProfile)}
       {userProfile && (
         <div>
-         <div style={{marginLeft:"4rem"}}><h2><Type String={[`Hii!  ${ userProfile.username}`]}/></h2></div>
-          <Input style={{marginBottom:"0.5rem",marginTop:"1rem"}} value={userProfile.username}/>
-          <Input style={{marginBottom:"0.5rem"}} value={userProfile.email}/>
-          <Input style={{marginBottom:"0.5rem"}} value={userProfile.phone}/>
-          <Input style={{marginBottom:"0.5rem"}} value={userProfile.college}/>
-         <button style={{marginLeft:"6rem"}} className="buttondesign">Update</button>
-         
+          <div style={{ marginLeft: "4rem" }}><h2><Type String={[`Hii!  ${userProfile.username}`]} /></h2></div>
+          <Input style={{ marginBottom: "0.5rem", marginTop: "1rem" }} value={userProfile.username} />
+          <Input style={{ marginBottom: "0.5rem" }} value={userProfile.email} />
+          <Input style={{ marginBottom: "0.5rem" }} value={userProfile.phone} />
+          <Input style={{ marginBottom: "0.5rem" }} value={userProfile.college} />
+          <button style={{ marginLeft: "6rem" }} className="buttondesign">Update</button>
+
         </div>
       )}
     </div>

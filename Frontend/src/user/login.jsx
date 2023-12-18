@@ -40,32 +40,32 @@ export const Login = () => {
   };
 
   return (
-    <div style={{width:"40rem",height:"20rem",display:"flex"}}>
+    <div style={{ width: "40rem", height: "20rem", display: "flex" }}>
       {/* This is a Form  */}
-      <div className="loginimage" style={{width:"50%"}} ><img width={"350px"} src={logo}></img></div>
-      <div style={{width:"50%",padding:"15px"}}>
-      <h1 style={{marginLeft:"8rem"}}>Login</h1>
-      <form style={{width:"100%"}} onSubmit={handleSubmit}>
-        <label style={{}}>Username</label>
-        
-        <Input style={{marginTop:"0.5rem",marginBottom:"0.5rem"}}
-          type="email"
-          name="lemail"
-          placeholder="Enter your username"
-          onChange={handlechange}
-        />
-        
-        <label >Password</label>
-        
-        <Input style={{marginTop:"0.5rem",marginBottom:"0.5rem"}}
-          type="text"
-          name="lpassword"
-          placeholder="Enter your Password"
-          onChange={handlechange}
-        />
-        <br></br>
-        <button type="submit" style={{marginLeft:"2rem",marginTop:"2rem",width:"70%"}} className="buttondesign">submit</button>
-      </form>
+      <div className="loginimage" style={{ width: "50%" }} ><img width={"350px"} src={logo}></img></div>
+      <div style={{ width: "50%", padding: "15px" }}>
+        <h1 style={{ marginLeft: "8rem" }}>Login</h1>
+        <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+          <label style={{}}>Username</label>
+
+          <Input style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}
+            type="email"
+            name="lemail"
+            placeholder="Enter your username"
+            onChange={handlechange}
+          />
+
+          <label >Password</label>
+
+          <Input style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}
+            type="Password"
+            name="lpassword"
+            placeholder="Enter your Password"
+            onChange={handlechange}
+          />
+          <br></br>
+          <button type="submit" style={{ marginLeft: "2rem", marginTop: "2rem", width: "70%" }} className="buttondesign">submit</button>
+        </form>
       </div>
     </div>
   );

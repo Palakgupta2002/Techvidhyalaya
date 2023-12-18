@@ -6,7 +6,7 @@ export const BlogCreate = () => {
   const [Blogimage, setimage] = useState(Blog); // Initialize with default image
   const [BlogDescription, setdesc] = useState('');
   const [Blogemail, setemail] = useState('');
-  const [selectedOption, setSelectedOption] = useState("Choose a title   "); 
+  const [selectedOption, setSelectedOption] = useState("Choose a title   ");
 
   const options = [
     { value: "Programming", label: "Programming" },
@@ -32,7 +32,7 @@ export const BlogCreate = () => {
     { value: "Operating Systems", label: "Operating Systems" },
     { value: "Algorithms and Data Structures", label: "Algorithms and Data Structures" },
   ];
-  
+
   const handleOptionChange = (selectedOption) => {
     setSelectedOption(selectedOption);
   };
@@ -50,7 +50,7 @@ export const BlogCreate = () => {
       setimage(Blog);
     }
   };
-  
+
 
   const handlechangedesc = (e) => {
     setdesc(e.target.value);
@@ -64,12 +64,12 @@ export const BlogCreate = () => {
   formData.append('Blogimage', Blogimage);
   formData.append('BlogDescription', BlogDescription);
   formData.append('BlogEmail', Blogemail);
-  formData.append('Blogtitle',selectedOption);
+  formData.append('Blogtitle', selectedOption);
 
 
   const handlesubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
-   
+
 
     try {
       const currentDate = new Date().toISOString();
@@ -111,11 +111,11 @@ export const BlogCreate = () => {
           placeholder="Title Of Your Post"
         />
         <br></br>
-         <Select
+        <Select
           value={selectedOption}
           onChange={handleOptionChange}
           options={options}
-          
+
         />
         <button type="submit">Create Post</button>
       </form>

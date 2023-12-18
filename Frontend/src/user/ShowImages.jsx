@@ -169,6 +169,7 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
                               </Modal>
                             </div>
                             <Download />
+                           
                             <button className='buttondesign' style={{ position: "absolute", marginTop: "-30px" }}
                               onClick={() =>
                                 showModal(
@@ -180,9 +181,12 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
                                   image.contentType
                                 )
                               }
+                              
                             >
-                              <ShareAltOutlined />
+                             <ShareAltOutlined />
+
                             </button>
+                            
                           </div>
                         </>
                       )}
@@ -193,7 +197,7 @@ export const ShowImages = ({ profilesToMap, globalemail, searchQuery }) => {
           ))}
         </ul>
         <Modal visible={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-          {contentType.startsWith('image/') && <Share url={url} />}
+          { <Share url={url} />}
         </Modal>
       </div>
     </div>

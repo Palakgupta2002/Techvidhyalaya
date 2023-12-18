@@ -6,25 +6,25 @@ import { useContext } from 'react';
 import context from "../user/context"
 
 export const Adlogin = () => {
-  const { AdminLogin,SetAdminlogin} = useContext(context);
-  
-  const [form] = Form.useForm(); 
+  const { AdminLogin, SetAdminlogin } = useContext(context);
+
+  const [form] = Form.useForm();
   const [user, setuser] = useState({});
- // Initialize form values
+  // Initialize form values
   const navigate = useNavigate();
   function handlechange(e) {
-    
+
     setuser({
       ...user,
       [e.target.name]: e.target.value,
-    
+
     });
     SetAdminlogin(user.email)
     e.preventDefault();
-    
+
   }
-  
-  console.log(AdminLogin,"hello")
+
+  console.log(AdminLogin, "hello")
 
   const handleSubmit = async () => { // Changed function name to handleSubmit
     try {
@@ -46,10 +46,10 @@ export const Adlogin = () => {
     }
   };
 
-  
+
 
   return (
-    <div style={{marginTop:"4rem"}} className="login-page">
+    <div style={{ marginTop: "4rem" }} className="login-page">
       <div className="login-box">
         <div className="illustration-wrapper">
           <img src={logo} alt="Login" />

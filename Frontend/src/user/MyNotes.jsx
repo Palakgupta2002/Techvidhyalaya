@@ -7,7 +7,7 @@ function MyNotes() {
   const [profile, setProfiles] = useState([]);
   const [selectedLink, setSelectedLink] = useState();
   const [selectedImageId, setSelectedImageId] = useState(null);
-   const {globalEmail}=useContext(context);
+  const { globalEmail } = useContext(context);
 
   useEffect(() => {
     fetch("http://localhost:5000/Profile")
@@ -22,7 +22,7 @@ function MyNotes() {
 
   const handleImageDelete = (imageId) => {
     setSelectedImageId(imageId);
-    console.log("Selected Image ID:", imageId,globalEmail,"global");
+    console.log("Selected Image ID:", imageId, globalEmail, "global");
   };
 
   return (
@@ -51,7 +51,7 @@ function MyNotes() {
                           )}
                           alt={`${profile.username}'s Image`}
                         />
-                        <button onClick={() => handleImageDelete(image._id)}><DeletePost globalEmail={globalEmail} imageId={selectedImageId}/></button>
+                        <button onClick={() => handleImageDelete(image._id)}><DeletePost globalEmail={globalEmail} imageId={selectedImageId} /></button>
                       </>
                     )}
                   </li>
@@ -63,7 +63,7 @@ function MyNotes() {
                     {pdf !== null && pdf.data && pdf.contentType === "application/pdf" && (
                       <>
                         <p>{pdf.title}</p>
-                        
+
                         <iframe
                           style={{ border: "2px solid red" }}
                           title={`${profile.username}'s PDF`}
@@ -75,7 +75,7 @@ function MyNotes() {
                           width="20%"
                           height="360"
                         ></iframe>
-                        <button onClick={() => handleImageDelete(pdf._id)}><DeletePost  globalEmail={globalEmail} selectedImageId={selectedImageId}/></button>
+                        <button onClick={() => handleImageDelete(pdf._id)}><DeletePost globalEmail={globalEmail} selectedImageId={selectedImageId} /></button>
                       </>
                     )}
                   </li>
@@ -103,7 +103,7 @@ function MyNotes() {
                           />
                           Your browser does not support the video tag.
                         </video>
-                        <button onClick={() => handleImageDelete(pdf._id)}><DeletePost globalEmail={globalEmail} imageId={selectedImageId}/></button>
+                        <button onClick={() => handleImageDelete(pdf._id)}><DeletePost globalEmail={globalEmail} imageId={selectedImageId} /></button>
                       </>
                     )}
                   </li>

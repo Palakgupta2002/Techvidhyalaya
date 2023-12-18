@@ -4,14 +4,14 @@ const DeletePost = ({ globalEmail, selectedImageId }) => {
   console.log(globalEmail, "global");
   const handleDelete = async () => {
     const formData = {
-      DEmail:globalEmail,
-      ImageId:selectedImageId,
+      DEmail: globalEmail,
+      ImageId: selectedImageId,
     }
-    
+
     try {
       const response = await fetch("http://localhost:5000/DeletePost", {
         method: "DELETE",
-        body:JSON.stringify(formData),
+        body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json", // Set the content type to JSON
         },
@@ -27,7 +27,7 @@ const DeletePost = ({ globalEmail, selectedImageId }) => {
       console.log("Error occurred:", error);
     }
   };
-  
+
 
   return (
     <div>

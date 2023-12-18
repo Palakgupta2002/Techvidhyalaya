@@ -35,9 +35,9 @@ const Report = ({ offendemail, ReportImageLink }) => {
     //   "ReportDesc": "Report description"
     // }
     let formData = {
-      ReportMakerEmail:reportmaker ,
+      ReportMakerEmail: reportmaker,
       OffenderEmail: offendemail,
-      ReportLink:ReportImageLink, 
+      ReportLink: ReportImageLink,
       ReportDesc: reportdesc,
 
     }
@@ -45,12 +45,12 @@ const Report = ({ offendemail, ReportImageLink }) => {
       const response = await fetch('http://localhost:5000/ReportCreation', {
         method: 'POST',
         body: JSON.stringify(formData),
-        headers:{
-          "Content-Type":"application/json"
+        headers: {
+          "Content-Type": "application/json"
 
         },
       });
-      
+
 
       if (response.status === 200) {
         alert('Report created successfully');
@@ -61,7 +61,7 @@ const Report = ({ offendemail, ReportImageLink }) => {
       console.log('Internal Error:', error);
     }
   };
-  console.log(ReportImageLink,"image")
+  console.log(ReportImageLink, "image")
 
   return (
     <div>
